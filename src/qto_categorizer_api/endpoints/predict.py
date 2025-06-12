@@ -4,20 +4,22 @@ import pydantic
 import pandas as pd
 
 
-from qto_categorizer_api.errors import (APIModelNotFoundError,
-                                 APIModelNotLoadableError)
-from qto_categorizer_api.settings.app_settings import (Settings, get_settings)
+from qto_categorizer_api.settings.app_settings import Settings, get_settings
 from qto_categorizer_api.endpoints.router import router
 from qto_categorizer_api.load_model import load_model
 
+
 #
 class InputData(pydantic.BaseModel):
-   feature_1: float = 10.0
+    feature_1: float = 10.0
 
 
-endpoint_description = "Expose machine learning system designed to automatically categorize financial transactions."
+endpoint_description = (
+    "Expose machine learning system designed to automatically categorize financial transactions."
+)
 
-@router.post('/predict', description=endpoint_description)
+
+@router.post("/predict", description=endpoint_description)
 def predict(request_data: InputData) -> dict:
     """Predict the output based on the input data.
 
@@ -31,11 +33,11 @@ def predict(request_data: InputData) -> dict:
 
     logger = logging.getLogger(__name__)
     logger.setLevel(settings.log_level)
-    
-    logger.info(f'[API::predict] Request data: {request_data}')
+
+    logger.info(f"[API::predict] Request data: {request_data}")
 
     input_data = request_data.dict()
-    logger.info(f'[API::predict] Input data: {input_data}')
+    logger.info(f"[API::predict] Input data: {input_data}")
 
     # Read the Pickled model from the file-system
     model = load_model(settings=settings)
@@ -50,7 +52,7 @@ def predict(request_data: InputData) -> dict:
     output = {}
     output["predictions"] = predictions[0]
 
-    logger.info(f'[API::predict] Prediction made: {output}')
+    logger.info(f"[API::predict] Prediction made: {output}")
 
     #
     return output
