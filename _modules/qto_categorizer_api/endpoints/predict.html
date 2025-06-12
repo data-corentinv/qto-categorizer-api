@@ -80,25 +80,27 @@
 <span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
 
 
-<span class="kn">from</span><span class="w"> </span><span class="nn">qto_categorizer_api.errors</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span><span class="n">APIModelNotFoundError</span><span class="p">,</span>
-                                 <span class="n">APIModelNotLoadableError</span><span class="p">)</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">qto_categorizer_api.settings.app_settings</span><span class="w"> </span><span class="kn">import</span> <span class="p">(</span><span class="n">Settings</span><span class="p">,</span> <span class="n">get_settings</span><span class="p">)</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">qto_categorizer_api.settings.app_settings</span><span class="w"> </span><span class="kn">import</span> <span class="n">Settings</span><span class="p">,</span> <span class="n">get_settings</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">qto_categorizer_api.endpoints.router</span><span class="w"> </span><span class="kn">import</span> <span class="n">router</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">qto_categorizer_api.load_model</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_model</span>
+
 
 <span class="c1">#</span>
 <div class="viewcode-block" id="InputData">
 <a class="viewcode-back" href="../../../_api/qto_categorizer_api.endpoints.html#qto_categorizer_api.endpoints.predict.InputData">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">InputData</span><span class="p">(</span><span class="n">pydantic</span><span class="o">.</span><span class="n">BaseModel</span><span class="p">):</span>
-   <span class="n">feature_1</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">10.0</span></div>
+    <span class="n">feature_1</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">10.0</span></div>
 
 
 
-<span class="n">endpoint_description</span> <span class="o">=</span> <span class="s2">&quot;Expose machine learning system designed to automatically categorize financial transactions.&quot;</span>
+<span class="n">endpoint_description</span> <span class="o">=</span> <span class="p">(</span>
+    <span class="s2">&quot;Expose machine learning system designed to automatically categorize financial transactions.&quot;</span>
+<span class="p">)</span>
+
 
 <div class="viewcode-block" id="predict">
 <a class="viewcode-back" href="../../../_api/qto_categorizer_api.endpoints.html#qto_categorizer_api.endpoints.predict.predict">[docs]</a>
-<span class="nd">@router</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s1">&#39;/predict&#39;</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="n">endpoint_description</span><span class="p">)</span>
+<span class="nd">@router</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s2">&quot;/predict&quot;</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="n">endpoint_description</span><span class="p">)</span>
 <span class="k">def</span><span class="w"> </span><span class="nf">predict</span><span class="p">(</span><span class="n">request_data</span><span class="p">:</span> <span class="n">InputData</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Predict the output based on the input data.</span>
 
@@ -112,11 +114,11 @@
 
     <span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
     <span class="n">logger</span><span class="o">.</span><span class="n">setLevel</span><span class="p">(</span><span class="n">settings</span><span class="o">.</span><span class="n">log_level</span><span class="p">)</span>
-    
-    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;[API::predict] Request data: </span><span class="si">{</span><span class="n">request_data</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;[API::predict] Request data: </span><span class="si">{</span><span class="n">request_data</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 
     <span class="n">input_data</span> <span class="o">=</span> <span class="n">request_data</span><span class="o">.</span><span class="n">dict</span><span class="p">()</span>
-    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;[API::predict] Input data: </span><span class="si">{</span><span class="n">input_data</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;[API::predict] Input data: </span><span class="si">{</span><span class="n">input_data</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 
     <span class="c1"># Read the Pickled model from the file-system</span>
     <span class="n">model</span> <span class="o">=</span> <span class="n">load_model</span><span class="p">(</span><span class="n">settings</span><span class="o">=</span><span class="n">settings</span><span class="p">)</span>
@@ -131,7 +133,7 @@
     <span class="n">output</span> <span class="o">=</span> <span class="p">{}</span>
     <span class="n">output</span><span class="p">[</span><span class="s2">&quot;predictions&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">predictions</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 
-    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;[API::predict] Prediction made: </span><span class="si">{</span><span class="n">output</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;[API::predict] Prediction made: </span><span class="si">{</span><span class="n">output</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 
     <span class="c1">#</span>
     <span class="k">return</span> <span class="n">output</span></div>

@@ -84,12 +84,12 @@
 <span class="s2">That API endpoint may be used for instance for livelyness and readyness probes.</span>
 <span class="s2">&quot;&quot;&quot;</span>
 
+
 <div class="viewcode-block" id="health">
 <a class="viewcode-back" href="../../../_api/qto_categorizer_api.endpoints.html#qto_categorizer_api.endpoints.health.health">[docs]</a>
-<span class="nd">@router</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;/health&#39;</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="n">endpoint_description</span><span class="p">,</span>
-            <span class="n">status_code</span><span class="o">=</span><span class="n">fastapi</span><span class="o">.</span><span class="n">status</span><span class="o">.</span><span class="n">HTTP_200_OK</span><span class="p">)</span>
+<span class="nd">@router</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;/health&quot;</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="n">endpoint_description</span><span class="p">,</span> <span class="n">status_code</span><span class="o">=</span><span class="n">fastapi</span><span class="o">.</span><span class="n">status</span><span class="o">.</span><span class="n">HTTP_200_OK</span><span class="p">)</span>
 <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">health</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
-   <span class="k">return</span> <span class="s2">&quot;OK&quot;</span></div>
+    <span class="k">return</span> <span class="s2">&quot;OK&quot;</span></div>
 
 </pre></div>
 

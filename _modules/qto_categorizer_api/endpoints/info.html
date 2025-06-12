@@ -85,18 +85,23 @@
 <span class="s2">The source for that info.txt file is</span>
 <span class="s2">&quot;&quot;&quot;</span>
 
+
 <div class="viewcode-block" id="info">
 <a class="viewcode-back" href="../../../_api/qto_categorizer_api.endpoints.html#qto_categorizer_api.endpoints.info.info">[docs]</a>
-<span class="nd">@router</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;/info&#39;</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="n">endpoint_description</span><span class="p">,</span>
-            <span class="n">status_code</span><span class="o">=</span><span class="n">fastapi</span><span class="o">.</span><span class="n">status</span><span class="o">.</span><span class="n">HTTP_200_OK</span><span class="p">,</span> <span class="n">response_class</span><span class="o">=</span><span class="n">PlainTextResponse</span><span class="p">)</span>
+<span class="nd">@router</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
+    <span class="s2">&quot;/info&quot;</span><span class="p">,</span>
+    <span class="n">description</span><span class="o">=</span><span class="n">endpoint_description</span><span class="p">,</span>
+    <span class="n">status_code</span><span class="o">=</span><span class="n">fastapi</span><span class="o">.</span><span class="n">status</span><span class="o">.</span><span class="n">HTTP_200_OK</span><span class="p">,</span>
+    <span class="n">response_class</span><span class="o">=</span><span class="n">PlainTextResponse</span><span class="p">,</span>
+<span class="p">)</span>
 <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">info</span><span class="p">():</span>
-   <span class="n">file_content</span> <span class="o">=</span> <span class="kc">None</span>
-   <span class="n">file_path</span> <span class="o">=</span> <span class="n">pathlib</span><span class="o">.</span><span class="n">Path</span><span class="p">(</span><span class="s1">&#39;data/info.txt&#39;</span><span class="p">)</span>
-   <span class="k">if</span> <span class="n">file_path</span><span class="o">.</span><span class="n">exists</span><span class="p">():</span>
-      <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">file_path</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
-         <span class="n">file_content</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
-           
-   <span class="k">return</span> <span class="n">file_content</span></div>
+    <span class="n">file_content</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">file_path</span> <span class="o">=</span> <span class="n">pathlib</span><span class="o">.</span><span class="n">Path</span><span class="p">(</span><span class="s2">&quot;data/info.txt&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">file_path</span><span class="o">.</span><span class="n">exists</span><span class="p">():</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">file_path</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+            <span class="n">file_content</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
+
+    <span class="k">return</span> <span class="n">file_content</span></div>
 
 </pre></div>
 
