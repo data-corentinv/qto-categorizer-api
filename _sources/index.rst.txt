@@ -3,8 +3,8 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to AI Helpers PySpark Utils's documentation!
-====================================================
+Welcome to Qto categorizer API Utils's documentation!
+=====================================================
 
 .. toctree::
    :maxdepth: 2
