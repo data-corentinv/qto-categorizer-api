@@ -1,6 +1,5 @@
 **API - Qto Categorizer API**
 
-- **Template**: [AI Helpers API template](https://github.com/ai-helpers/api-cookiecutter-template)
 - **Description**: Expose machine learning system designed to automatically categorize financial transactions
 
 ## Table of Content (ToC)

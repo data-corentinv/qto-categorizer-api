@@ -18,9 +18,9 @@ sys.path.insert(0, os.path.abspath(package_dir))
 
 # -- Project information -----------------------------------------------------
 
-project = "AI Helpers qto-categorizer-api"
-copyright = "2024, AI-Helpers"
-author = "AI-Helpers Team"
+project = "qto-categorizer-api"
+copyright = "2024, data-corentin"
+author = "Corentin Vasseur <vasseur.corentin@gmail.com>"
 
 # The full version, including alpha/beta/rc tags
 version = "0.1.0"

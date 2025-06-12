@@ -2,9 +2,9 @@ API service
 
 The content is that of the data/info.txt file
 
-Source: https://github.com/ai-helpers/api-cookiecutter-template
+Source: https://github.com/data-corentinv/qto-categorizer-api
 
-Contact the AI Helpers, for more information.
+Contact the Qto team, for more information.
 
 Business objective
 TBD.
