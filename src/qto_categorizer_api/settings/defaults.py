@@ -5,16 +5,14 @@ import pathlib
 
 DATA_LOADER_MODULE = ""
 
-MODEL_FILENAME = "model.pickle"
 MODEL_LOCAL_REL_DIR = "data/models"
 
+# LOCAL
 LOCAL_DIR = pathlib.Path(os.getcwd())
 LOCAL_TEMP_DIR = pathlib.Path(os.getcwd()) / "tmp"
 
 MODEL_LOCAL_DIR = LOCAL_DIR / MODEL_LOCAL_REL_DIR
-AI_MODEL_EXTERNAL_URL = MODEL_LOCAL_DIR / MODEL_FILENAME
-
-MODEL_MLFLOW_URI = ""
+URL_OR_MODEL_PATH = MODEL_LOCAL_DIR
 
 LOG_LEVEL = "DEBUG"
 

@@ -7,4 +7,4 @@ Source: https://github.com/data-corentinv/qto-categorizer-api
 Contact the Qto team, for more information.
 
 Business objective
-TBD.
+ML system designed to automatically categorize financial transactions for Qto’s business customers.

@@ -624,7 +624,7 @@ files = [
     {file = "colorama-0.4.6-py2.py3-none-any.whl", hash = "sha256:4f1d9991f5acc0ca119f9d443620b77f9d6b33703e51011c16baf57afb285fc6"},
     {file = "colorama-0.4.6.tar.gz", hash = "sha256:08695f5cb7ed6e0531a20572697297273c47b8cae5a63ffc6d6ed5c201be6e44"},
 ]
-markers = {main = "platform_system == \"Windows\" or sys_platform == \"win32\"", checkers = "sys_platform == \"win32\" or platform_system == \"Windows\"", dev = "platform_system == \"Windows\" or sys_platform == \"win32\"", documenters = "sys_platform == \"win32\"", notebooks = "sys_platform == \"win32\""}
+markers = {main = "platform_system == \"Windows\" or sys_platform == \"win32\"", checkers = "platform_system == \"Windows\" or sys_platform == \"win32\"", dev = "platform_system == \"Windows\" or sys_platform == \"win32\"", documenters = "sys_platform == \"win32\"", notebooks = "sys_platform == \"win32\""}
 
 [[package]]
 name = "comm"
@@ -1044,25 +1044,25 @@ docs = ["ipython", "matplotlib", "numpydoc", "sphinx"]
 tests = ["pytest", "pytest-cov", "pytest-xdist"]
 
 [[package]]
-name = "databricks-cli"
-version = "0.18.0"
-description = "A command line interface for Databricks"
+name = "databricks-sdk"
+version = "0.57.0"
+description = "Databricks SDK for Python (Beta)"
 optional = false
 python-versions = ">=3.7"
 groups = ["main"]
 files = [
-    {file = "databricks-cli-0.18.0.tar.gz", hash = "sha256:87569709eda9af3e9db8047b691e420b5e980c62ef01675575c0d2b9b4211eb7"},
-    {file = "databricks_cli-0.18.0-py2.py3-none-any.whl", hash = "sha256:1176a5f42d3e8af4abfc915446fb23abc44513e325c436725f5898cbb9e3384b"},
+    {file = "databricks_sdk-0.57.0-py3-none-any.whl", hash = "sha256:a253bb4c7e00e43654af8b6e29ac79bee72d310e342ec73e148e4e591b75915f"},
+    {file = "databricks_sdk-0.57.0.tar.gz", hash = "sha256:62c012001b6bd4d46e5a117b90e286c2c5a77e4f53f31985f253ce21ce986837"},
 ]
 
 [package.dependencies]
-click = ">=7.0"
-oauthlib = ">=3.1.0"
-pyjwt = ">=1.7.0"
-requests = ">=2.17.3"
-six = ">=1.10.0"
-tabulate = ">=0.7.7"
-urllib3 = ">=1.26.7,<3"
+google-auth = ">=2.0,<3.0"
+requests = ">=2.28.1,<3"
+
+[package.extras]
+dev = ["autoflake", "black", "build", "databricks-connect", "httpx", "ipython", "ipywidgets", "isort", "langchain-openai ; python_version > \"3.7\"", "openai", "pycodestyle", "pyfakefs", "pytest", "pytest-cov", "pytest-mock", "pytest-rerunfailures", "pytest-xdist", "requests-mock", "wheel"]
+notebook = ["ipython (>=8,<10)", "ipywidgets (>=8,<9)"]
+openai = ["httpx", "langchain-openai ; python_version > \"3.7\"", "openai"]
 
 [[package]]
 name = "debugpy"
@@ -1221,18 +1221,6 @@ files = [
 [package.dependencies]
 dnspython = ">=2.0.0"
 idna = ">=2.0.0"
-
-[[package]]
-name = "entrypoints"
-version = "0.4"
-description = "Discover and load entry points from installed packages."
-optional = false
-python-versions = ">=3.6"
-groups = ["main"]
-files = [
-    {file = "entrypoints-0.4-py3-none-any.whl", hash = "sha256:f174b5ff827504fd3cd97cc3f8649f3693f51538c7e4bdf3ef002c8429d42f9f"},
-    {file = "entrypoints-0.4.tar.gz", hash = "sha256:b706eddaa9218a19ebcd67b56818f05bb27589b1ca9e8d797b74affad4ccacd4"},
-]
 
 [[package]]
 name = "exceptiongroup"
@@ -1561,6 +1549,33 @@ gitdb = ">=4.0.1,<5"
 [package.extras]
 doc = ["sphinx (>=7.1.2,<7.2)", "sphinx-autodoc-typehints", "sphinx_rtd_theme"]
 test = ["coverage[toml]", "ddt (>=1.1.1,!=1.4.3)", "mock ; python_version < \"3.8\"", "mypy", "pre-commit", "pytest (>=7.3.1)", "pytest-cov", "pytest-instafail", "pytest-mock", "pytest-sugar", "typing-extensions ; python_version < \"3.11\""]
+
+[[package]]
+name = "google-auth"
+version = "2.40.3"
+description = "Google Authentication Library"
+optional = false
+python-versions = ">=3.7"
+groups = ["main"]
+files = [
+    {file = "google_auth-2.40.3-py2.py3-none-any.whl", hash = "sha256:1370d4593e86213563547f97a92752fc658456fe4514c809544f330fed45a7ca"},
+    {file = "google_auth-2.40.3.tar.gz", hash = "sha256:500c3a29adedeb36ea9cf24b8d10858e152f2412e3ca37829b3fa18e33d63b77"},
+]
+
+[package.dependencies]
+cachetools = ">=2.0.0,<6.0"
+pyasn1-modules = ">=0.2.1"
+rsa = ">=3.1.4,<5"
+
+[package.extras]
+aiohttp = ["aiohttp (>=3.6.2,<4.0.0)", "requests (>=2.20.0,<3.0.0)"]
+enterprise-cert = ["cryptography", "pyopenssl"]
+pyjwt = ["cryptography (<39.0.0) ; python_version < \"3.8\"", "cryptography (>=38.0.3)", "pyjwt (>=2.0)"]
+pyopenssl = ["cryptography (<39.0.0) ; python_version < \"3.8\"", "cryptography (>=38.0.3)", "pyopenssl (>=20.0.0)"]
+reauth = ["pyu2f (>=0.1.5)"]
+requests = ["requests (>=2.20.0,<3.0.0)"]
+testing = ["aiohttp (<3.10.0)", "aiohttp (>=3.6.2,<4.0.0)", "aioresponses", "cryptography (<39.0.0) ; python_version < \"3.8\"", "cryptography (>=38.0.3)", "flask", "freezegun", "grpcio", "mock", "oauth2client", "packaging", "pyjwt (>=2.0)", "pyopenssl (<24.3.0)", "pyopenssl (>=20.0.0)", "pytest", "pytest-asyncio", "pytest-cov", "pytest-localserver", "pyu2f (>=0.1.5)", "requests (>=2.20.0,<3.0.0)", "responses", "urllib3"]
+urllib3 = ["packaging", "urllib3"]
 
 [[package]]
 name = "gunicorn"
@@ -2521,36 +2536,45 @@ files = [
 
 [[package]]
 name = "mlflow-skinny"
-version = "2.9.2"
-description = "MLflow: A Platform for ML Development and Productionization"
+version = "3.1.0"
+description = "MLflow is an open source platform for the complete machine learning lifecycle"
 optional = false
-python-versions = ">=3.8"
+python-versions = ">=3.9"
 groups = ["main"]
 files = [
-    {file = "mlflow-skinny-2.9.2.tar.gz", hash = "sha256:61de0a70e22552132f7140e1ddfa7d31a88a3ed735df155dcd884d5a64c81f14"},
-    {file = "mlflow_skinny-2.9.2-py3-none-any.whl", hash = "sha256:364d53b703a238594aa9d1b978c4377d4f931b1fcd43d021b76fb483009a31f9"},
+    {file = "mlflow_skinny-3.1.0-py3-none-any.whl", hash = "sha256:d6221d55df49bfb9546594bad82a9608c016e71267fd9ad7bfac17ea299f327e"},
+    {file = "mlflow_skinny-3.1.0.tar.gz", hash = "sha256:20c58f89d75b2f21f09b5584ca79c715e328e35e9472b644c4ec3c80e501b2ad"},
 ]
 
 [package.dependencies]
+cachetools = ">=5.0.0,<7"
 click = ">=7.0,<9"
 cloudpickle = "<4"
-databricks-cli = ">=0.8.7,<1"
-entrypoints = "<1"
-gitpython = ">=2.1.0,<4"
-importlib-metadata = ">=3.7.0,<4.7.0 || >4.7.0,<8"
-packaging = "<24"
-protobuf = ">=3.12.0,<5"
-pytz = "<2024"
+databricks-sdk = ">=0.20.0,<1"
+fastapi = "<1"
+gitpython = ">=3.1.9,<4"
+importlib_metadata = ">=3.7.0,<4.7.0 || >4.7.0,<9"
+opentelemetry-api = ">=1.9.0,<3"
+opentelemetry-sdk = ">=1.9.0,<3"
+packaging = "<26"
+protobuf = ">=3.12.0,<7"
+pydantic = ">=1.10.8,<3"
 pyyaml = ">=5.1,<7"
 requests = ">=2.17.3,<3"
 sqlparse = ">=0.4.0,<1"
+typing-extensions = ">=4.0.0,<5"
+uvicorn = "<1"
 
 [package.extras]
 aliyun-oss = ["aliyunstoreplugin"]
-databricks = ["azure-storage-file-datalake (>12)", "boto3 (>1)", "google-cloud-storage (>=1.30.0)"]
-extras = ["azureml-core (>=1.2.0)", "boto3", "google-cloud-storage (>=1.30.0)", "kubernetes", "mlserver (>=1.2.0,!=1.3.1)", "mlserver-mlflow (>=1.2.0,!=1.3.1)", "prometheus-flask-exporter", "pyarrow", "pysftp", "requests-auth-aws-sigv4", "virtualenv"]
-gateway = ["aiohttp (<4)", "boto3 (>=1.28.56,<2)", "fastapi (<1)", "pydantic (>=1.0,<3)", "tiktoken (<1)", "uvicorn[standard] (<1)", "watchfiles (<1)"]
-genai = ["aiohttp (<4)", "boto3 (>=1.28.56,<2)", "fastapi (<1)", "pydantic (>=1.0,<3)", "tiktoken (<1)", "uvicorn[standard] (<1)", "watchfiles (<1)"]
+auth = ["Flask-WTF (<2)"]
+databricks = ["azure-storage-file-datalake (>12)", "boto3 (>1)", "botocore", "databricks-agents (>=1.0.0rc3,<2.0)", "google-cloud-storage (>=1.30.0)"]
+extras = ["azureml-core (>=1.2.0)", "boto3", "botocore", "google-cloud-storage (>=1.30.0)", "kubernetes", "prometheus-flask-exporter", "pyarrow", "pysftp", "requests-auth-aws-sigv4", "virtualenv"]
+gateway = ["aiohttp (<4)", "boto3 (>=1.28.56,<2)", "fastapi (<1)", "slowapi (>=0.1.9,<1)", "tiktoken (<1)", "uvicorn[standard] (<1)", "watchfiles (<2)"]
+genai = ["aiohttp (<4)", "boto3 (>=1.28.56,<2)", "fastapi (<1)", "slowapi (>=0.1.9,<1)", "tiktoken (<1)", "uvicorn[standard] (<1)", "watchfiles (<2)"]
+jfrog = ["mlflow-jfrog-plugin"]
+langchain = ["langchain (>=0.1.0,<=0.3.25)"]
+mlserver = ["mlserver (>=1.2.0,!=1.3.1)", "mlserver-mlflow (>=1.2.0,!=1.3.1)"]
 sqlserver = ["mlflow-dbstore"]
 xethub = ["mlflow-xethub"]
 
@@ -2845,23 +2869,6 @@ files = [
 ]
 
 [[package]]
-name = "oauthlib"
-version = "3.2.2"
-description = "A generic, spec-compliant, thorough implementation of the OAuth request-signing logic"
-optional = false
-python-versions = ">=3.6"
-groups = ["main"]
-files = [
-    {file = "oauthlib-3.2.2-py3-none-any.whl", hash = "sha256:8139f29aac13e25d502680e9e19963e83f16838d48a0d71c287fe40e7067fbca"},
-    {file = "oauthlib-3.2.2.tar.gz", hash = "sha256:9859c40929662bec5d64f34d01c99e093149682a3f38915dc0655d5a633dd918"},
-]
-
-[package.extras]
-rsa = ["cryptography (>=3.0.0)"]
-signals = ["blinker (>=1.4.0)"]
-signedtoken = ["cryptography (>=3.0.0)", "pyjwt (>=2.0.0,<3)"]
-
-[[package]]
 name = "omegaconf"
 version = "2.3.0"
 description = "A flexible configuration library"
@@ -2876,6 +2883,55 @@ files = [
 [package.dependencies]
 antlr4-python3-runtime = "==4.9.*"
 PyYAML = ">=5.1.0"
+
+[[package]]
+name = "opentelemetry-api"
+version = "1.34.1"
+description = "OpenTelemetry Python API"
+optional = false
+python-versions = ">=3.9"
+groups = ["main"]
+files = [
+    {file = "opentelemetry_api-1.34.1-py3-none-any.whl", hash = "sha256:b7df4cb0830d5a6c29ad0c0691dbae874d8daefa934b8b1d642de48323d32a8c"},
+    {file = "opentelemetry_api-1.34.1.tar.gz", hash = "sha256:64f0bd06d42824843731d05beea88d4d4b6ae59f9fe347ff7dfa2cc14233bbb3"},
+]
+
+[package.dependencies]
+importlib-metadata = ">=6.0,<8.8.0"
+typing-extensions = ">=4.5.0"
+
+[[package]]
+name = "opentelemetry-sdk"
+version = "1.34.1"
+description = "OpenTelemetry Python SDK"
+optional = false
+python-versions = ">=3.9"
+groups = ["main"]
+files = [
+    {file = "opentelemetry_sdk-1.34.1-py3-none-any.whl", hash = "sha256:308effad4059562f1d92163c61c8141df649da24ce361827812c40abb2a1e96e"},
+    {file = "opentelemetry_sdk-1.34.1.tar.gz", hash = "sha256:8091db0d763fcd6098d4781bbc80ff0971f94e260739aa6afe6fd379cdf3aa4d"},
+]
+
+[package.dependencies]
+opentelemetry-api = "1.34.1"
+opentelemetry-semantic-conventions = "0.55b1"
+typing-extensions = ">=4.5.0"
+
+[[package]]
+name = "opentelemetry-semantic-conventions"
+version = "0.55b1"
+description = "OpenTelemetry Semantic Conventions"
+optional = false
+python-versions = ">=3.9"
+groups = ["main"]
+files = [
+    {file = "opentelemetry_semantic_conventions-0.55b1-py3-none-any.whl", hash = "sha256:5da81dfdf7d52e3d37f8fe88d5e771e191de924cfff5f550ab0b8f7b2409baed"},
+    {file = "opentelemetry_semantic_conventions-0.55b1.tar.gz", hash = "sha256:ef95b1f009159c28d7a7849f5cbc71c4c34c845bb514d66adfdf1b3fff3598b3"},
+]
+
+[package.dependencies]
+opentelemetry-api = "1.34.1"
+typing-extensions = ">=4.5.0"
 
 [[package]]
 name = "packaging"
@@ -3387,6 +3443,33 @@ files = [
 ]
 
 [[package]]
+name = "pyasn1"
+version = "0.6.1"
+description = "Pure-Python implementation of ASN.1 types and DER/BER/CER codecs (X.208)"
+optional = false
+python-versions = ">=3.8"
+groups = ["main"]
+files = [
+    {file = "pyasn1-0.6.1-py3-none-any.whl", hash = "sha256:0d632f46f2ba09143da3a8afe9e33fb6f92fa2320ab7e886e2d0f7672af84629"},
+    {file = "pyasn1-0.6.1.tar.gz", hash = "sha256:6f580d2bdd84365380830acf45550f2511469f673cb4a5ae3857a3170128b034"},
+]
+
+[[package]]
+name = "pyasn1-modules"
+version = "0.4.2"
+description = "A collection of ASN.1-based protocols modules"
+optional = false
+python-versions = ">=3.8"
+groups = ["main"]
+files = [
+    {file = "pyasn1_modules-0.4.2-py3-none-any.whl", hash = "sha256:29253a9207ce32b64c3ac6600edc75368f98473906e8fd1043bd6b5b1de2c14a"},
+    {file = "pyasn1_modules-0.4.2.tar.gz", hash = "sha256:677091de870a80aae844b1ca6134f54652fa2c8c5a52aa396440ac3106e941e6"},
+]
+
+[package.dependencies]
+pyasn1 = ">=0.6.1,<0.7.0"
+
+[[package]]
 name = "pycparser"
 version = "2.22"
 description = "C parser in Python"
@@ -3571,24 +3654,6 @@ files = [
 
 [package.extras]
 windows-terminal = ["colorama (>=0.4.6)"]
-
-[[package]]
-name = "pyjwt"
-version = "2.10.1"
-description = "JSON Web Token implementation in Python"
-optional = false
-python-versions = ">=3.9"
-groups = ["main"]
-files = [
-    {file = "PyJWT-2.10.1-py3-none-any.whl", hash = "sha256:dcdd193e30abefd5debf142f9adfcdd2b58004e644f25406ffaebd50bd98dacb"},
-    {file = "pyjwt-2.10.1.tar.gz", hash = "sha256:3cc5772eb20009233caf06e9d8a0577824723b44e6648ee0a2aedb6cf9381953"},
-]
-
-[package.extras]
-crypto = ["cryptography (>=3.4.0)"]
-dev = ["coverage[toml] (==5.0.4)", "cryptography (>=3.4.0)", "pre-commit", "pytest (>=6.0.0,<7.0.0)", "sphinx", "sphinx-rtd-theme", "zope.interface"]
-docs = ["sphinx", "sphinx-rtd-theme", "zope.interface"]
-tests = ["coverage[toml] (==5.0.4)", "pytest (>=6.0.0,<7.0.0)"]
 
 [[package]]
 name = "pyparsing"
@@ -4039,13 +4104,13 @@ cffi = {version = "*", markers = "implementation_name == \"pypy\""}
 
 [[package]]
 name = "qto-categorizer-ml"
-version = "0.1.0.dev1"
+version = "0.1.0.dev2"
 description = "This is the ML pipeline code of categorized ML porject."
 optional = false
 python-versions = ">=3.10,<3.12"
 groups = ["main"]
 files = [
-    {file = "qto_categorizer_ml-0.1.0.dev1-py3-none-any.whl", hash = "sha256:949b494be31af09566f66721b8784a9dd17aa01ba2ff17c79111ca1a3ea53504"},
+    {file = "qto_categorizer_ml-0.1.0.dev2-py3-none-any.whl", hash = "sha256:1470c7862799281d423fd12249007cb1a708b47e4414870aa99c153f493406d5"},
 ]
 
 [package.dependencies]
@@ -4056,7 +4121,7 @@ fastparquet = ">=2024.2.0,<2025.0.0"
 gunicorn = ">=23.0.0,<24.0.0"
 loguru = ">=0.7.2,<0.8.0"
 matplotlib = ">=3.8.3,<4.0.0"
-mlflow-skinny = ">=2.9.2,<2.10.0"
+mlflow-skinny = ">=3.1.0,<4.0.0"
 numpy = ">=1.26.4,<2.0.0"
 omegaconf = ">=2.3.0,<3.0.0"
 pandas = ">=2.2.1,<3.0.0"
@@ -4075,7 +4140,7 @@ tests = ["boto3-stubs[s3] (>=1.34.61,<2.0.0)", "moto (>=5.0.3,<6.0.0)", "pytest 
 
 [package.source]
 type = "file"
-url = "data/dist/qto_categorizer_ml-0.1.0.dev1-py3-none-any.whl"
+url = "data/dist/qto_categorizer_ml-0.1.0.dev2-py3-none-any.whl"
 
 [[package]]
 name = "questionary"
@@ -4468,6 +4533,21 @@ files = [
     {file = "rpds_py-0.25.1-pp39-pypy39_pp73-win_amd64.whl", hash = "sha256:6099263f526efff9cf3883dfef505518730f7a7a93049b1d90d42e50a22b4793"},
     {file = "rpds_py-0.25.1.tar.gz", hash = "sha256:8960b6dac09b62dac26e75d7e2c4a22efb835d827a7278c34f72b2b84fa160e3"},
 ]
+
+[[package]]
+name = "rsa"
+version = "4.9.1"
+description = "Pure-Python RSA implementation"
+optional = false
+python-versions = "<4,>=3.6"
+groups = ["main"]
+files = [
+    {file = "rsa-4.9.1-py3-none-any.whl", hash = "sha256:68635866661c6836b8d39430f97a996acbd61bfa49406748ea243539fe239762"},
+    {file = "rsa-4.9.1.tar.gz", hash = "sha256:e7bdbfdb5497da4c07dfd35530e1a902659db6ff241e39d9953cad06ebd0ae75"},
+]
+
+[package.dependencies]
+pyasn1 = ">=0.1.3"
 
 [[package]]
 name = "ruff"
@@ -5042,21 +5122,6 @@ files = [
 pbr = ">=2.0.0"
 
 [[package]]
-name = "tabulate"
-version = "0.9.0"
-description = "Pretty-print tabular data"
-optional = false
-python-versions = ">=3.7"
-groups = ["main"]
-files = [
-    {file = "tabulate-0.9.0-py3-none-any.whl", hash = "sha256:024ca478df22e9340661486f85298cff5f6dcdba14f3813e8830015b9ed1948f"},
-    {file = "tabulate-0.9.0.tar.gz", hash = "sha256:0095b12bf5966de529c0feb1fa08671671b3368eec77d7ef7ab114be2c068b3c"},
-]
-
-[package.extras]
-widechars = ["wcwidth"]
-
-[[package]]
 name = "termcolor"
 version = "2.5.0"
 description = "ANSI color formatting for output in terminal"
@@ -5503,7 +5568,7 @@ description = "Fast implementation of asyncio event loop on top of libuv"
 optional = false
 python-versions = ">=3.8.0"
 groups = ["main"]
-markers = "sys_platform != \"win32\" and sys_platform != \"cygwin\" and platform_python_implementation != \"PyPy\""
+markers = "platform_python_implementation != \"PyPy\" and sys_platform != \"win32\" and sys_platform != \"cygwin\""
 files = [
     {file = "uvloop-0.21.0-cp310-cp310-macosx_10_9_universal2.whl", hash = "sha256:ec7e6b09a6fdded42403182ab6b832b71f4edaf7f37a9a0e371a01db5f0cb45f"},
     {file = "uvloop-0.21.0-cp310-cp310-macosx_10_9_x86_64.whl", hash = "sha256:196274f2adb9689a289ad7d65700d37df0c0930fd8e4e743fa4834e850d7719d"},
@@ -5903,4 +5968,4 @@ type = ["pytest-mypy"]
 [metadata]
 lock-version = "2.1"
 python-versions = ">=3.10,<3.12"
-content-hash = "656929339ee0d1b62fe7149bbce394654c4a7368fb9fee31c17c74058272f9a3"
+content-hash = "3908a4ddf8b3c8e19b006952a9f0b5a6ce082a3e7b5eed3de4e86e9e2b6d0d48"

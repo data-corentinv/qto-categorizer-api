@@ -8,7 +8,7 @@ import pydantic_settings
 
 from qto_categorizer_api.settings.args import parse_args
 from qto_categorizer_api.settings.defaults import (
-    AI_MODEL_EXTERNAL_URL,
+    URL_OR_MODEL_PATH,
     DATA_LOADER_MODULE,
     LOCAL_DIR,
     LOCAL_TEMP_DIR,
@@ -26,7 +26,7 @@ class HashableBaseSettings(pydantic_settings.BaseSettings):
 
 
 class Settings(HashableBaseSettings):
-    ai_model_external_url: Union[str, pathlib.Path] = AI_MODEL_EXTERNAL_URL
+    url_or_model_path: Union[str, pathlib.Path] = URL_OR_MODEL_PATH
     data_loader_module: Optional[str] = DATA_LOADER_MODULE
     local_dir: pathlib.Path = LOCAL_DIR
     local_temp_dir: pathlib.Path = LOCAL_TEMP_DIR
@@ -50,7 +50,7 @@ def get_settings() -> Settings:
         log_level_arg = "DEBUG"
 
     settings: Settings = Settings(
-        ai_model_external_url=resulting_args.ai_model_external_url,
+        url_or_model_path=resulting_args.url_or_model_path,
         data_loader_module=resulting_args.data_loader_module,
         local_dir=resulting_args.local_dir,
         local_temp_dir=resulting_args.local_temp_dir,
