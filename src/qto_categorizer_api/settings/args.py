@@ -1,3 +1,5 @@
+""" Arg parser.
+"""
 import argparse
 import typing
 
@@ -8,6 +10,8 @@ from qto_categorizer_api.settings.defaults import (
     LOCAL_TEMP_DIR,
     SVR_HOST,
     SVR_PORT,
+    KAFKA_HOST,
+    KAFKA_PORT,
     ROOT_PATH,
     WORKERS,
 )
@@ -131,6 +135,28 @@ def _add_model_path_or_url(parser: argparse.ArgumentParser) -> argparse.Argument
     )
     return parser
 
+def _add_kafka_host(parser: argparse.ArgumentParser) -> argparse.ArgumentParser:
+    parser.add_argument(
+        "-KH",
+        "--kafka-host",
+        help=f"IP address of the kafka host (e.g., {KAFKA_HOST}).",
+        action="store",
+        default=KAFKA_HOST,
+    )
+
+    return parser
+
+
+def _add_kafka_port(parser: argparse.ArgumentParser) -> argparse.ArgumentParser:
+    parser.add_argument(
+        "-kp",
+        "--kafka-port",
+        help=f"kafka port (e.g., {KAFKA_PORT}).",
+        type=int,
+        action="store",
+        default=KAFKA_PORT,
+    )
+    return parser
 
 def _get_arg_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
@@ -143,6 +169,8 @@ def _get_arg_parser() -> argparse.ArgumentParser:
     parser = _add_log_level(parser)
     parser = _add_host(parser)
     parser = _add_port(parser)
+    parser = _add_kafka_host(parser)
+    parser = _add_kafka_port(parser)
     parser = _add_workers(parser)
     parser = _add_root_path(parser)
     parser = _add_data_loader_module(parser)

@@ -14,7 +14,7 @@ from qto_categorizer_api.models import init_db, Prediction
 
 #
 class InputData(pydantic.BaseModel):
-    """ InputData format.
+    """ InputData request format.
     """
     AMOUNT: float = 3.36
     TYPE_OF_PAYMENT: str = "Direct Debit"

@@ -15,6 +15,8 @@ from qto_categorizer_api.settings.defaults import (
     LOG_LEVEL,
     SVR_HOST,
     SVR_PORT,
+    KAFKA_HOST,
+    KAFKA_PORT,
     ROOT_PATH,
     WORKERS,
 )
@@ -33,6 +35,8 @@ class Settings(HashableBaseSettings):
     log_level: str = LOG_LEVEL
     svr_host: str = SVR_HOST
     svr_port: int = SVR_PORT
+    kafka_host: str = KAFKA_HOST
+    kafka_port: int = KAFKA_PORT
     root_path: str = ROOT_PATH
     workers: int = WORKERS
     database_url: str = "sqlite:///./predictions.db"  # Default SQLite database
@@ -62,6 +66,8 @@ def get_settings() -> Settings:
         log_level=log_level_arg,
         svr_host=resulting_args.host,
         svr_port=resulting_args.port,
+        kafka_host=resulting_args.host,
+        kafka_port=resulting_args.port,
         root_path=resulting_args.root_path,
         workers=resulting_args.workers,
     )
