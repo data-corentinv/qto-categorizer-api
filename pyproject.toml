@@ -24,6 +24,7 @@ uvicorn = "^0.29.0"
 types-cachetools = "^6.0.0.20250525"
 qto-categorizer-ml = {path = "data/dist/qto_categorizer_ml-0.1.0.dev2-py3-none-any.whl"}
 sqlalchemy = "^2.0.41"
+confluent-kafka = "^2.10.1"
 
 [tool.poetry.group.dev.dependencies]
 pre-commit = "^3.7.0"
@@ -63,6 +64,8 @@ build-backend = "poetry.core.masonry.api"
 
 [tool.poetry.plugins."console_scripts"]
 "qto-categorizer-api" = "qto_categorizer_api.cli:start_api"
+"qto-categorizer-kafka-consumer" = "qto_categorizer_api.kafka.consumer:main"
+"qto-categorizer-kafka-producer" = "qto_categorizer_api.kafka.producer:main"
 
 # CONFIGURATIONS
 

@@ -13,6 +13,8 @@
   - [Test](#test)
   - [Documentation](#documentation)
 - [Project Structure](#project-structure)
+- [Kafka](#kafka)
+  - [Start Kafka broker](#start-kafka-broker)
 - [Contributions](#contributions)
 
 ## Quickstart
@@ -99,6 +101,78 @@ Access the ReDoc interface for an alternative documentation style.
     │   ├── poetry.toml                       
     │   ├── pyproject.toml   
         └── README.md    
+
+
+## Kafka
+
+I've created a complete Kafka-based prediction system with:
+
+1. A producer (producer.py) that:
+   - Sends prediction requests to Kafka
+   - Uses the same data model as the API
+   - Includes error handling and logging
+
+2. A consumer (consumer.py) that:
+   - Consumes prediction requests from Kafka
+   - Uses the same prediction logic as the API
+   - Stores results in the database
+   - Includes error handling and logging
+
+3. Updated settings with Kafka configuration:
+   - Bootstrap servers
+   - Topic name
+   - Default values for local development
+
+To use this system:
+
+1. Install the new dependencies:
+```bash
+poetry install --all-extras
+```
+
+2. Start a Kafka broker (if not already running)
+
+3. Run the consumer in one terminal:
+
+```bash
+python -m qto_categorizer_api.kafka.consumer
+```
+
+4. Run the producer in another terminal:
+
+```bash
+python -m qto_categorizer_api.kafka.producer
+```
+
+The producer will send a sample prediction request, and the consumer will process it and store the result in the database.
+
+### Start Kafka broker
+
+To start the Kafka broker:
+1 .Make sure you have Docker and Docker Compose installed on your system.
+2. Start the Kafka broker and Zookeeper:
+
+```bash
+docker-compose up -d
+docker-compose ps
+docker-compose logs -f kafka
+docker-compose down
+```
+
+The configuration I've provided:
+- Uses Confluent's Kafka image which is well-maintained
+- Sets up a single-node Kafka broker
+- Configures Zookeeper (required for Kafka)
+- Exposes Kafka on port 9092 (matching our application settings)
+- Enables auto-creation of topics
+- Sets up a single replica (suitable for development)
+
+Once the broker is running, you can test it with our producer and consumer:
+
+To verify messages are being sent and received, you can use the Kafka console consumer:
+```bash
+docker-compose exec kafka kafka-console-consumer --bootstrap-server localhost:9092 --topic prediction-requests --from-beginning
+```
 
 ## Contributions
 
