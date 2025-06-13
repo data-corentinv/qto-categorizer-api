@@ -249,3 +249,9 @@ To verify messages are being sent and received, you can use the Kafka console co
 # Monitor Kafka messages in real-time
 docker-compose exec kafka kafka-console-consumer --bootstrap-server localhost:9092 --topic prediction-requests --from-beginning
 ```
+
+## Useful links
+
+- [Github - qto-categorizer-ml](https://github.com/data-corentinv/qto-categorizer-ml)
+- [Github - qto-categorizer-api](https://github.com/data-corentinv/qto-categorizer-api)
+- [Github -qto-categorizer-depl](https://github.com/data-corentinv/qto-categorizer-depl)
