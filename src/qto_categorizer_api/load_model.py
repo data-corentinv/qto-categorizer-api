@@ -6,7 +6,7 @@ from cachetools.func import ttl_cache
 from typing import Union
 
 from qto_categorizer_ml.io.registries import CustomLoader
-from qto_categorizer_api.errors import APIModelNotFoundError, APIModelNotLoadableError
+from qto_categorizer_api.errors import APIModelNotLoadableError
 from qto_categorizer_api.settings.app_settings import Settings
 
 

@@ -2,11 +2,9 @@
 
 import json
 import logging
-from typing import Dict, Any
 
 import pandas as pd
 from confluent_kafka import Consumer, KafkaError
-from pydantic import BaseModel
 
 from qto_categorizer_api.endpoints.predict import InputData
 from qto_categorizer_api.settings.app_settings import Settings, get_settings

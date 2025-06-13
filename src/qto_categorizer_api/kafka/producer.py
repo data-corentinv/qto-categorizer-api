@@ -2,10 +2,8 @@
 
 import json
 import logging
-from typing import Dict, Any
 
 from confluent_kafka import Producer
-from pydantic import BaseModel
 
 from qto_categorizer_api.settings.app_settings import Settings, get_settings
 from qto_categorizer_api.endpoints.predict import InputData

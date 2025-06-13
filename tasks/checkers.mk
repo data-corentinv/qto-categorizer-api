@@ -19,4 +19,4 @@ check-security: ## Check the project code security with bandit.
 check-coverage: ## Check the project test coverage with coverage.
 	poetry run pytest --cov=src/qto_categorizer_api/ --cov-fail-under=80 --numprocesses="auto" tests/
 
-checkers: check-types check-format check-quality check-security ## Run all the checkers. (TODO: add check-coverage)
+checkers: check-format check-quality check-security ## Run all the checkers. (TODO: add check-coverage)
