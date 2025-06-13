@@ -1,0 +1,20 @@
+meta {
+  name: predict
+  type: http
+  seq: 5
+}
+
+post {
+  url: {{host}}/predict
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+      "AMOUNT": 3.36,
+      "TYPE_OF_PAYMENT": "Direct Debit",
+      "MERCHANT_NAME": "Qonto",
+      "DESCRIPTION": "Transaction Carte One En Devise Étrangère - fx_card"
+  }
+}
