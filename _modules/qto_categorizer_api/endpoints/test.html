@@ -74,12 +74,14 @@
            <div itemprop="articleBody">
              
   <h1>Source code for qto_categorizer_api.endpoints.test</h1><div class="highlight"><pre>
-<span></span><span class="kn">import</span><span class="w"> </span><span class="nn">fastapi</span>
+<span></span><span class="sd">&quot;&quot;&quot;Test route.&quot;&quot;&quot;</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">fastapi</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">qto_categorizer_api.endpoints.router</span><span class="w"> </span><span class="kn">import</span> <span class="n">router</span>
 
 <span class="n">DEFAULT_OUTPUT</span> <span class="o">=</span> <span class="p">{</span>
-    <span class="s2">&quot;example&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;float64&quot;</span><span class="p">,</span> <span class="s2">&quot;example&quot;</span><span class="p">:</span> <span class="o">-</span><span class="mf">0.02596975</span><span class="p">},</span>
+    <span class="s2">&quot;category_example&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;str&quot;</span><span class="p">,</span> <span class="s2">&quot;category&quot;</span><span class="p">:</span> <span class="s2">&quot;Bank Fees &amp; Charges: Other Bank Charges&quot;</span><span class="p">},</span>
 <span class="p">}</span>
 
 
@@ -92,12 +94,12 @@
 <span class="sd">     :param dict_:</span>
 <span class="sd">     :return:</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">result</span> <span class="o">=</span> <span class="p">{</span><span class="n">key</span><span class="p">:</span> <span class="n">value</span><span class="p">[</span><span class="s2">&quot;example&quot;</span><span class="p">]</span> <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">dict_</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="p">{</span><span class="n">key</span><span class="p">:</span> <span class="n">value</span><span class="p">[</span><span class="s2">&quot;category&quot;</span><span class="p">]</span> <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">value</span> <span class="ow">in</span> <span class="n">dict_</span><span class="o">.</span><span class="n">items</span><span class="p">()}</span>
     <span class="k">return</span> <span class="n">result</span></div>
 
 
 
-<span class="n">endpoint_description</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="n">ENDPPOINT_DESCRIPTION</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
 <span class="s2">Returns a default dictionary of values, normally with the same format as</span>
 <span class="s2">ordinary predictions.</span>
 <span class="s2">&quot;&quot;&quot;</span>
@@ -105,8 +107,15 @@
 
 <div class="viewcode-block" id="test">
 <a class="viewcode-back" href="../../../_api/qto_categorizer_api.endpoints.html#qto_categorizer_api.endpoints.test.test">[docs]</a>
-<span class="nd">@router</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;/test&quot;</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="n">endpoint_description</span><span class="p">,</span> <span class="n">status_code</span><span class="o">=</span><span class="n">fastapi</span><span class="o">.</span><span class="n">status</span><span class="o">.</span><span class="n">HTTP_200_OK</span><span class="p">)</span>
+<span class="nd">@router</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s2">&quot;/test&quot;</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="n">ENDPPOINT_DESCRIPTION</span><span class="p">,</span> <span class="n">status_code</span><span class="o">=</span><span class="n">fastapi</span><span class="o">.</span><span class="n">status</span><span class="o">.</span><span class="n">HTTP_200_OK</span><span class="p">)</span>
 <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">test</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Test/example route.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    dict</span>
+<span class="sd">        Format return</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">output_data</span> <span class="o">=</span> <span class="n">format_output_json</span><span class="p">(</span><span class="n">DEFAULT_OUTPUT</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">output_data</span></div>
 

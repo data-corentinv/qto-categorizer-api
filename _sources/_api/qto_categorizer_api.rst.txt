@@ -45,6 +45,14 @@ qto\_categorizer\_api.load\_model module
    :undoc-members:
    :show-inheritance:
 
+qto\_categorizer\_api.models module
+-----------------------------------
+
+.. automodule:: qto_categorizer_api.models
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 qto\_categorizer\_api.setup\_logging module
 -------------------------------------------
 

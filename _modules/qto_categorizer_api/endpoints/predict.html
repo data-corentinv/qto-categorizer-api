@@ -74,33 +74,67 @@
            <div itemprop="articleBody">
              
   <h1>Source code for qto_categorizer_api.endpoints.predict</h1><div class="highlight"><pre>
-<span></span><span class="kn">import</span><span class="w"> </span><span class="nn">logging</span>
+<span></span><span class="sd">&quot;&quot;&quot;Predict route.&quot;&quot;&quot;</span>
+
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Any</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">logging</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">pydantic</span>
-
 <span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
-
+<span class="kn">from</span><span class="w"> </span><span class="nn">sqlalchemy.exc</span><span class="w"> </span><span class="kn">import</span> <span class="n">SQLAlchemyError</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">qto_categorizer_api.settings.app_settings</span><span class="w"> </span><span class="kn">import</span> <span class="n">Settings</span><span class="p">,</span> <span class="n">get_settings</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">qto_categorizer_api.endpoints.router</span><span class="w"> </span><span class="kn">import</span> <span class="n">router</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">qto_categorizer_api.load_model</span><span class="w"> </span><span class="kn">import</span> <span class="n">load_model</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">qto_categorizer_api.models</span><span class="w"> </span><span class="kn">import</span> <span class="n">init_db</span><span class="p">,</span> <span class="n">Prediction</span>
 
 
 <span class="c1">#</span>
 <div class="viewcode-block" id="InputData">
 <a class="viewcode-back" href="../../../_api/qto_categorizer_api.endpoints.html#qto_categorizer_api.endpoints.predict.InputData">[docs]</a>
 <span class="k">class</span><span class="w"> </span><span class="nc">InputData</span><span class="p">(</span><span class="n">pydantic</span><span class="o">.</span><span class="n">BaseModel</span><span class="p">):</span>
-    <span class="n">feature_1</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">10.0</span></div>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;InputData request format.&quot;&quot;&quot;</span>
+
+    <span class="n">AMOUNT</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="mf">3.36</span>
+    <span class="n">TYPE_OF_PAYMENT</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;Direct Debit&quot;</span>
+    <span class="n">MERCHANT_NAME</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;Qonto&quot;</span>
+    <span class="n">DESCRIPTION</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="s2">&quot;Transaction Carte One En Devise Étrangère - fx_card&quot;</span></div>
 
 
 
-<span class="n">endpoint_description</span> <span class="o">=</span> <span class="p">(</span>
+<span class="n">ENDPOINT_DESCRIPTION</span> <span class="o">=</span> <span class="p">(</span>
     <span class="s2">&quot;Expose machine learning system designed to automatically categorize financial transactions.&quot;</span>
 <span class="p">)</span>
 
 
+<div class="viewcode-block" id="log_api_call_in_db">
+<a class="viewcode-back" href="../../../_api/qto_categorizer_api.endpoints.html#qto_categorizer_api.endpoints.predict.log_api_call_in_db">[docs]</a>
+<span class="k">def</span><span class="w"> </span><span class="nf">log_api_call_in_db</span><span class="p">(</span><span class="n">input_data</span><span class="p">:</span> <span class="nb">dict</span><span class="p">,</span> <span class="n">predictions</span><span class="p">,</span> <span class="n">settings</span><span class="p">:</span> <span class="n">Settings</span><span class="p">,</span> <span class="n">logger</span><span class="p">:</span> <span class="n">Any</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Log each API call in db for traceability.&quot;&quot;&quot;</span>
+    <span class="n">db</span> <span class="o">=</span> <span class="n">init_db</span><span class="p">(</span><span class="n">settings</span><span class="o">.</span><span class="n">database_url</span><span class="p">)()</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">db_prediction</span> <span class="o">=</span> <span class="n">Prediction</span><span class="p">(</span>
+            <span class="n">amount</span><span class="o">=</span><span class="n">input_data</span><span class="p">[</span><span class="s2">&quot;AMOUNT&quot;</span><span class="p">],</span>
+            <span class="n">type_of_payment</span><span class="o">=</span><span class="n">input_data</span><span class="p">[</span><span class="s2">&quot;TYPE_OF_PAYMENT&quot;</span><span class="p">],</span>
+            <span class="n">merchant_name</span><span class="o">=</span><span class="n">input_data</span><span class="p">[</span><span class="s2">&quot;MERCHANT_NAME&quot;</span><span class="p">],</span>
+            <span class="n">description</span><span class="o">=</span><span class="n">input_data</span><span class="p">[</span><span class="s2">&quot;DESCRIPTION&quot;</span><span class="p">],</span>
+            <span class="n">prediction</span><span class="o">=</span><span class="nb">str</span><span class="p">(</span><span class="n">predictions</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span>
+            <span class="n">model_path</span><span class="o">=</span><span class="nb">str</span><span class="p">(</span><span class="n">settings</span><span class="o">.</span><span class="n">url_or_model_path</span><span class="p">),</span>
+        <span class="p">)</span>
+        <span class="n">db</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">db_prediction</span><span class="p">)</span>
+        <span class="n">db</span><span class="o">.</span><span class="n">commit</span><span class="p">()</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;[API::predict] Prediction stored in database with ID: </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">db_prediction</span><span class="o">.</span><span class="n">id</span><span class="p">)</span>
+    <span class="k">except</span> <span class="n">SQLAlchemyError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s2">&quot;[API::predict] Failed to store prediction in database: </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="nb">str</span><span class="p">(</span><span class="n">e</span><span class="p">))</span>
+        <span class="n">db</span><span class="o">.</span><span class="n">rollback</span><span class="p">()</span>
+    <span class="k">finally</span><span class="p">:</span>
+        <span class="n">db</span><span class="o">.</span><span class="n">close</span><span class="p">()</span></div>
+
+
+
 <div class="viewcode-block" id="predict">
 <a class="viewcode-back" href="../../../_api/qto_categorizer_api.endpoints.html#qto_categorizer_api.endpoints.predict.predict">[docs]</a>
-<span class="nd">@router</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s2">&quot;/predict&quot;</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="n">endpoint_description</span><span class="p">)</span>
+<span class="nd">@router</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s2">&quot;/predict&quot;</span><span class="p">,</span> <span class="n">description</span><span class="o">=</span><span class="n">ENDPOINT_DESCRIPTION</span><span class="p">)</span>
 <span class="k">def</span><span class="w"> </span><span class="nf">predict</span><span class="p">(</span><span class="n">request_data</span><span class="p">:</span> <span class="n">InputData</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Predict the output based on the input data.</span>
 
@@ -115,10 +149,10 @@
     <span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
     <span class="n">logger</span><span class="o">.</span><span class="n">setLevel</span><span class="p">(</span><span class="n">settings</span><span class="o">.</span><span class="n">log_level</span><span class="p">)</span>
 
-    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;[API::predict] Request data: </span><span class="si">{</span><span class="n">request_data</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;[API::predict] Request data </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">request_data</span><span class="p">)</span>
 
-    <span class="n">input_data</span> <span class="o">=</span> <span class="n">request_data</span><span class="o">.</span><span class="n">dict</span><span class="p">()</span>
-    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;[API::predict] Input data: </span><span class="si">{</span><span class="n">input_data</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">input_data</span> <span class="o">=</span> <span class="n">request_data</span><span class="o">.</span><span class="n">model_dump</span><span class="p">()</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;[API::predict] Input data: </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">input_data</span><span class="p">)</span>
 
     <span class="c1"># Read the Pickled model from the file-system</span>
     <span class="n">model</span> <span class="o">=</span> <span class="n">load_model</span><span class="p">(</span><span class="n">settings</span><span class="o">=</span><span class="n">settings</span><span class="p">)</span>
@@ -128,14 +162,19 @@
 
     <span class="c1"># Make the prediction</span>
     <span class="n">predictions</span> <span class="o">=</span> <span class="n">model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="n">predictions</span><span class="p">)</span>
 
     <span class="c1"># Basic example of how to return the predictions</span>
     <span class="n">output</span> <span class="o">=</span> <span class="p">{}</span>
     <span class="n">output</span><span class="p">[</span><span class="s2">&quot;predictions&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">predictions</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 
-    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;[API::predict] Prediction made: </span><span class="si">{</span><span class="n">output</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="c1"># Store prediction in database</span>
+    <span class="n">log_api_call_in_db</span><span class="p">(</span>
+        <span class="n">input_data</span><span class="o">=</span><span class="n">input_data</span><span class="p">,</span> <span class="n">predictions</span><span class="o">=</span><span class="n">predictions</span><span class="p">,</span> <span class="n">settings</span><span class="o">=</span><span class="n">settings</span><span class="p">,</span> <span class="n">logger</span><span class="o">=</span><span class="n">logger</span>
+    <span class="p">)</span>
 
-    <span class="c1">#</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;[API::predict] Prediction made: </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">output</span><span class="p">)</span>
+
     <span class="k">return</span> <span class="n">output</span></div>
 
 </pre></div>

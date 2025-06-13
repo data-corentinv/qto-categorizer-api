@@ -61,6 +61,7 @@
 <li class="toctree-l3"><a class="reference internal" href="qto_categorizer_api.html#module-qto_categorizer_api.cli">qto_categorizer_api.cli module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="qto_categorizer_api.html#module-qto_categorizer_api.errors">qto_categorizer_api.errors module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="qto_categorizer_api.html#module-qto_categorizer_api.load_model">qto_categorizer_api.load_model module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="qto_categorizer_api.html#module-qto_categorizer_api.models">qto_categorizer_api.models module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="qto_categorizer_api.html#module-qto_categorizer_api.setup_logging">qto_categorizer_api.setup_logging module</a></li>
 <li class="toctree-l3"><a class="reference internal" href="qto_categorizer_api.html#module-qto_categorizer_api">Module contents</a></li>
 </ul>
@@ -102,29 +103,66 @@
 </section>
 <section id="module-qto_categorizer_api.endpoints.health">
 <span id="qto-categorizer-api-endpoints-health-module"></span><h2>qto_categorizer_api.endpoints.health module<a class="headerlink" href="#module-qto_categorizer_api.endpoints.health" title="Link to this heading"></a></h2>
+<p>Health route.</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="qto_categorizer_api.endpoints.health.health">
 <em class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">health</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="reference internal" href="../_modules/qto_categorizer_api/endpoints/health.html#health"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qto_categorizer_api.endpoints.health.health" title="Link to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Health route.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>“return OK”</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
 
 </section>
 <section id="module-qto_categorizer_api.endpoints.info">
 <span id="qto-categorizer-api-endpoints-info-module"></span><h2>qto_categorizer_api.endpoints.info module<a class="headerlink" href="#module-qto_categorizer_api.endpoints.info" title="Link to this heading"></a></h2>
+<p>Info page.</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="qto_categorizer_api.endpoints.info.info">
 <em class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">info</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qto_categorizer_api/endpoints/info.html#info"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qto_categorizer_api.endpoints.info.info" title="Link to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Info route.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>_description_</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>_type_</p>
+</dd>
+</dl>
+</dd></dl>
 
 </section>
 <section id="module-qto_categorizer_api.endpoints.predict">
 <span id="qto-categorizer-api-endpoints-predict-module"></span><h2>qto_categorizer_api.endpoints.predict module<a class="headerlink" href="#module-qto_categorizer_api.endpoints.predict" title="Link to this heading"></a></h2>
+<p>Predict route.</p>
 <dl class="py class">
 <dt class="sig sig-object py" id="qto_categorizer_api.endpoints.predict.InputData">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">InputData</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">feature_1</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">10.0</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qto_categorizer_api/endpoints/predict.html#InputData"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qto_categorizer_api.endpoints.predict.InputData" title="Link to this definition"></a></dt>
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">InputData</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">AMOUNT</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">float</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">3.36</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">TYPE_OF_PAYMENT</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'Direct</span> <span class="pre">Debit'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">MERCHANT_NAME</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'Qonto'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">DESCRIPTION</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'Transaction</span> <span class="pre">Carte</span> <span class="pre">One</span> <span class="pre">En</span> <span class="pre">Devise</span> <span class="pre">Étrangère</span> <span class="pre">-</span> <span class="pre">fx_card'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qto_categorizer_api/endpoints/predict.html#InputData"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qto_categorizer_api.endpoints.predict.InputData" title="Link to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">BaseModel</span></code></p>
+<p>InputData request format.</p>
 <dl class="py attribute">
-<dt class="sig sig-object py" id="qto_categorizer_api.endpoints.predict.InputData.feature_1">
-<span class="sig-name descname"><span class="pre">feature_1</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#qto_categorizer_api.endpoints.predict.InputData.feature_1" title="Link to this definition"></a></dt>
+<dt class="sig sig-object py" id="qto_categorizer_api.endpoints.predict.InputData.AMOUNT">
+<span class="sig-name descname"><span class="pre">AMOUNT</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">float</span></em><a class="headerlink" href="#qto_categorizer_api.endpoints.predict.InputData.AMOUNT" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qto_categorizer_api.endpoints.predict.InputData.TYPE_OF_PAYMENT">
+<span class="sig-name descname"><span class="pre">TYPE_OF_PAYMENT</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#qto_categorizer_api.endpoints.predict.InputData.TYPE_OF_PAYMENT" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qto_categorizer_api.endpoints.predict.InputData.MERCHANT_NAME">
+<span class="sig-name descname"><span class="pre">MERCHANT_NAME</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#qto_categorizer_api.endpoints.predict.InputData.MERCHANT_NAME" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qto_categorizer_api.endpoints.predict.InputData.DESCRIPTION">
+<span class="sig-name descname"><span class="pre">DESCRIPTION</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">str</span></em><a class="headerlink" href="#qto_categorizer_api.endpoints.predict.InputData.DESCRIPTION" title="Link to this definition"></a></dt>
 <dd></dd></dl>
 
 <dl class="py attribute">
@@ -133,6 +171,12 @@
 <dd><p>Configuration for the model, should be a dictionary conforming to [<cite>ConfigDict</cite>][pydantic.config.ConfigDict].</p>
 </dd></dl>
 
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="qto_categorizer_api.endpoints.predict.log_api_call_in_db">
+<span class="sig-name descname"><span class="pre">log_api_call_in_db</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">input_data</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">dict</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">predictions</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">settings</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="qto_categorizer_api.settings.html#qto_categorizer_api.settings.app_settings.Settings" title="qto_categorizer_api.settings.app_settings.Settings"><span class="pre">Settings</span></a></span></em>, <em class="sig-param"><span class="n"><span class="pre">logger</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">Any</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qto_categorizer_api/endpoints/predict.html#log_api_call_in_db"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qto_categorizer_api.endpoints.predict.log_api_call_in_db" title="Link to this definition"></a></dt>
+<dd><p>Log each API call in db for traceability.</p>
 </dd></dl>
 
 <dl class="py function">
@@ -155,17 +199,29 @@
 </section>
 <section id="module-qto_categorizer_api.endpoints.root">
 <span id="qto-categorizer-api-endpoints-root-module"></span><h2>qto_categorizer_api.endpoints.root module<a class="headerlink" href="#module-qto_categorizer_api.endpoints.root" title="Link to this heading"></a></h2>
+<p>Root endpoint.</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="qto_categorizer_api.endpoints.root.default">
 <em class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">default</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">str</span></span></span><a class="reference internal" href="../_modules/qto_categorizer_api/endpoints/root.html#default"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qto_categorizer_api.endpoints.root.default" title="Link to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Default route.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>return info message</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
 
 </section>
 <section id="module-qto_categorizer_api.endpoints.router">
 <span id="qto-categorizer-api-endpoints-router-module"></span><h2>qto_categorizer_api.endpoints.router module<a class="headerlink" href="#module-qto_categorizer_api.endpoints.router" title="Link to this heading"></a></h2>
+<p>Router script.</p>
 </section>
 <section id="module-qto_categorizer_api.endpoints.test">
 <span id="qto-categorizer-api-endpoints-test-module"></span><h2>qto_categorizer_api.endpoints.test module<a class="headerlink" href="#module-qto_categorizer_api.endpoints.test" title="Link to this heading"></a></h2>
+<p>Test route.</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="qto_categorizer_api.endpoints.test.format_output_json">
 <span class="sig-name descname"><span class="pre">format_output_json</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dict_</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qto_categorizer_api/endpoints/test.html#format_output_json"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qto_categorizer_api.endpoints.test.format_output_json" title="Link to this definition"></a></dt>
@@ -183,7 +239,16 @@
 <dl class="py function">
 <dt class="sig sig-object py" id="qto_categorizer_api.endpoints.test.test">
 <em class="property"><span class="k"><span class="pre">async</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">test</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span></span></span><a class="reference internal" href="../_modules/qto_categorizer_api/endpoints/test.html#test"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qto_categorizer_api.endpoints.test.test" title="Link to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Test/example route.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>Format return</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>dict</p>
+</dd>
+</dl>
+</dd></dl>
 
 </section>
 <section id="module-qto_categorizer_api.endpoints">

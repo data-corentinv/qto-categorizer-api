@@ -74,13 +74,15 @@
            <div itemprop="articleBody">
              
   <h1>Source code for qto_categorizer_api.endpoints.info</h1><div class="highlight"><pre>
-<span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pathlib</span>
+<span></span><span class="sd">&quot;&quot;&quot;Info page.&quot;&quot;&quot;</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">pathlib</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">fastapi</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">fastapi.responses</span><span class="w"> </span><span class="kn">import</span> <span class="n">PlainTextResponse</span>
 
 <span class="kn">from</span><span class="w"> </span><span class="nn">qto_categorizer_api.endpoints.router</span><span class="w"> </span><span class="kn">import</span> <span class="n">router</span>
 
-<span class="n">endpoint_description</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
+<span class="n">ENDPOINT_DESCRIPTION</span> <span class="o">=</span> <span class="s2">&quot;&quot;&quot;</span>
 <span class="s2">Dump the content of the data/info.txt file when it exists.</span>
 <span class="s2">The source for that info.txt file is</span>
 <span class="s2">&quot;&quot;&quot;</span>
@@ -90,15 +92,22 @@
 <a class="viewcode-back" href="../../../_api/qto_categorizer_api.endpoints.html#qto_categorizer_api.endpoints.info.info">[docs]</a>
 <span class="nd">@router</span><span class="o">.</span><span class="n">get</span><span class="p">(</span>
     <span class="s2">&quot;/info&quot;</span><span class="p">,</span>
-    <span class="n">description</span><span class="o">=</span><span class="n">endpoint_description</span><span class="p">,</span>
+    <span class="n">description</span><span class="o">=</span><span class="n">ENDPOINT_DESCRIPTION</span><span class="p">,</span>
     <span class="n">status_code</span><span class="o">=</span><span class="n">fastapi</span><span class="o">.</span><span class="n">status</span><span class="o">.</span><span class="n">HTTP_200_OK</span><span class="p">,</span>
     <span class="n">response_class</span><span class="o">=</span><span class="n">PlainTextResponse</span><span class="p">,</span>
 <span class="p">)</span>
 <span class="k">async</span> <span class="k">def</span><span class="w"> </span><span class="nf">info</span><span class="p">():</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Info route.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    _type_</span>
+<span class="sd">        _description_</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">file_content</span> <span class="o">=</span> <span class="kc">None</span>
     <span class="n">file_path</span> <span class="o">=</span> <span class="n">pathlib</span><span class="o">.</span><span class="n">Path</span><span class="p">(</span><span class="s2">&quot;data/info.txt&quot;</span><span class="p">)</span>
     <span class="k">if</span> <span class="n">file_path</span><span class="o">.</span><span class="n">exists</span><span class="p">():</span>
-        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">file_path</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">file_path</span><span class="p">,</span> <span class="n">encoding</span><span class="o">=</span><span class="s2">&quot;utf-8&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
             <span class="n">file_content</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">read</span><span class="p">()</span>
 
     <span class="k">return</span> <span class="n">file_content</span></div>

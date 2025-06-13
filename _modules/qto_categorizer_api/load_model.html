@@ -74,13 +74,14 @@
            <div itemprop="articleBody">
              
   <h1>Source code for qto_categorizer_api.load_model</h1><div class="highlight"><pre>
-<span></span><span class="kn">import</span><span class="w"> </span><span class="nn">logging</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">pickle</span>
+<span></span><span class="sd">&quot;&quot;&quot; &quot;&quot;&quot;</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">logging</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">pathlib</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">cachetools.func</span><span class="w"> </span><span class="kn">import</span> <span class="n">ttl_cache</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">Union</span>
 
-
+<span class="kn">from</span><span class="w"> </span><span class="nn">qto_categorizer_ml.io.registries</span><span class="w"> </span><span class="kn">import</span> <span class="n">CustomLoader</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">qto_categorizer_api.errors</span><span class="w"> </span><span class="kn">import</span> <span class="n">APIModelNotFoundError</span><span class="p">,</span> <span class="n">APIModelNotLoadableError</span>
 <span class="kn">from</span><span class="w"> </span><span class="nn">qto_categorizer_api.settings.app_settings</span><span class="w"> </span><span class="kn">import</span> <span class="n">Settings</span>
 
@@ -89,35 +90,48 @@
 <a class="viewcode-back" href="../../_api/qto_categorizer_api.html#qto_categorizer_api.load_model.load_model">[docs]</a>
 <span class="nd">@ttl_cache</span><span class="p">(</span><span class="n">maxsize</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">ttl</span><span class="o">=</span><span class="mi">86400</span><span class="p">)</span>
 <span class="k">def</span><span class="w"> </span><span class="nf">load_model</span><span class="p">(</span><span class="n">settings</span><span class="p">:</span> <span class="n">Settings</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Load model.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    settings : Settings</span>
+<span class="sd">        _description_</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    _type_</span>
+<span class="sd">        _description_</span>
+
+<span class="sd">    Raises</span>
+<span class="sd">    ------</span>
+<span class="sd">    APIModelNotFoundError</span>
+<span class="sd">        _description_</span>
+<span class="sd">    APIModelNotLoadableError</span>
+<span class="sd">        _description_</span>
+<span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
     <span class="n">logger</span><span class="o">.</span><span class="n">setLevel</span><span class="p">(</span><span class="n">settings</span><span class="o">.</span><span class="n">log_level</span><span class="p">)</span>
 
-    <span class="n">ai_model_external_url</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">pathlib</span><span class="o">.</span><span class="n">Path</span><span class="p">]</span> <span class="o">=</span> <span class="n">settings</span><span class="o">.</span><span class="n">ai_model_external_url</span>
+    <span class="c1"># categorizer_engine_uri = Union[str, pathlib.Path] = f&quot;&quot;&quot;</span>
+    <span class="c1">#         models:/{settings.categorizer_engine_name}/{settings.categorizer_engine_version}</span>
+    <span class="c1">#     &quot;&quot;&quot;</span>
 
-    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span>
-        <span class="s2">&quot;[API::load_model] Machine Learning (ML) model &quot;</span> <span class="sa">f</span><span class="s2">&quot;pickle file: </span><span class="si">{</span><span class="n">ai_model_external_url</span><span class="si">}</span><span class="s2">&quot;</span>
-    <span class="p">)</span>
+    <span class="n">url_or_model_path</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">pathlib</span><span class="o">.</span><span class="n">Path</span><span class="p">]</span> <span class="o">=</span> <span class="n">settings</span><span class="o">.</span><span class="n">url_or_model_path</span>
 
-    <span class="c1"># Read the Pickled model from the file-system</span>
-    <span class="n">model_filepath</span> <span class="o">=</span> <span class="n">pathlib</span><span class="o">.</span><span class="n">Path</span><span class="p">(</span><span class="n">ai_model_external_url</span><span class="p">)</span>
-    <span class="n">model</span> <span class="o">=</span> <span class="kc">None</span>
-    <span class="k">if</span> <span class="ow">not</span> <span class="n">model_filepath</span><span class="o">.</span><span class="n">exists</span><span class="p">():</span>
-        <span class="n">err_msg</span> <span class="o">=</span> <span class="s2">&quot;[API::load_model] The model file &quot;</span> <span class="s2">&quot;(</span><span class="si">{model_filepath}</span><span class="s2">) cannot be found&quot;</span>
-        <span class="k">raise</span> <span class="n">APIModelNotFoundError</span><span class="p">(</span><span class="n">err_msg</span><span class="p">)</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;[API::load_model] Machine Learning (ML) model: </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="p">{</span><span class="n">url_or_model_path</span><span class="p">})</span>
 
-    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">model_filepath</span><span class="p">,</span> <span class="s2">&quot;rb&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
-        <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;[API::load_model] Load model from &quot;</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">model_filepath</span><span class="si">}</span><span class="s2">...&quot;</span><span class="p">)</span>
-        <span class="n">model</span> <span class="o">=</span> <span class="n">pickle</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+    <span class="n">loader</span> <span class="o">=</span> <span class="n">CustomLoader</span><span class="p">()</span>
+    <span class="n">model</span> <span class="o">=</span> <span class="n">loader</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">uri</span><span class="o">=</span><span class="n">url_or_model_path</span><span class="p">)</span>
 
     <span class="k">if</span> <span class="ow">not</span> <span class="n">model</span><span class="p">:</span>
         <span class="n">err_msg</span> <span class="o">=</span> <span class="p">(</span>
-            <span class="s2">&quot;[API::load_model] The model file &quot;</span>
-            <span class="s2">&quot;(</span><span class="si">{model_filepath}</span><span class="s2">) cannot be loaded back into memory&quot;</span>
+            <span class="s2">&quot;[API::load_model] The model URI &quot;</span>
+            <span class="s2">&quot;(</span><span class="si">{url_or_model_path}</span><span class="s2">) cannot be loaded back into memory&quot;</span>
         <span class="p">)</span>
         <span class="k">raise</span> <span class="n">APIModelNotLoadableError</span><span class="p">(</span><span class="n">err_msg</span><span class="p">)</span>
 
     <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span>
-        <span class="s2">&quot;[API::load_model] The ML model has been &quot;</span> <span class="sa">f</span><span class="s2">&quot;successfully loaded from </span><span class="si">{</span><span class="n">model_filepath</span><span class="si">}</span><span class="s2">&quot;</span>
+        <span class="s2">&quot;[API::load_model] The ML model has been successfully loaded from </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="p">{</span><span class="n">url_or_model_path</span><span class="p">}</span>
     <span class="p">)</span>
 
     <span class="k">return</span> <span class="n">model</span></div>

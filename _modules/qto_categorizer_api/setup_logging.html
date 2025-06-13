@@ -83,12 +83,13 @@
 <div class="viewcode-block" id="setup_logging">
 <a class="viewcode-back" href="../../_api/qto_categorizer_api.html#qto_categorizer_api.setup_logging.setup_logging">[docs]</a>
 <span class="k">def</span><span class="w"> </span><span class="nf">setup_logging</span><span class="p">(</span><span class="n">log_level</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">LOG_LEVEL</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">dict</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Setup logger.&quot;&quot;&quot;</span>
     <span class="n">log_format</span> <span class="o">=</span> <span class="s2">&quot;[\</span><span class="si">%(asctime)s</span><span class="s2">] {\</span><span class="si">%(name)s</span><span class="s2">} \</span><span class="si">%(levelname)s</span><span class="s2"> - \</span><span class="si">%(message)s</span><span class="s2">&quot;</span>
 
     <span class="n">logging</span><span class="o">.</span><span class="n">basicConfig</span><span class="p">(</span><span class="n">level</span><span class="o">=</span><span class="n">log_level</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="n">log_format</span><span class="p">)</span>
 
-    <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;[API] Starting service with version </span><span class="si">{</span><span class="n">__version__</span><span class="si">}</span><span class="s2">...&quot;</span><span class="p">)</span>
-    <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;[API] Log level set to </span><span class="si">{</span><span class="n">log_level</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;[API] Starting service with version </span><span class="si">%s</span><span class="s2">...&quot;</span><span class="p">,</span> <span class="n">__version__</span><span class="p">)</span>
+    <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;[API] Log level set to </span><span class="si">%s</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">log_level</span><span class="p">)</span>
 
     <span class="n">log_config</span><span class="p">:</span> <span class="nb">dict</span> <span class="o">=</span> <span class="p">{</span>
         <span class="s2">&quot;version&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>

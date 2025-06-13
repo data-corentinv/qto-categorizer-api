@@ -73,6 +73,11 @@
 <li class="toctree-l4"><a class="reference internal" href="#qto_categorizer_api.load_model.load_model"><code class="docutils literal notranslate"><span class="pre">load_model()</span></code></a></li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="#module-qto_categorizer_api.models">qto_categorizer_api.models module</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#qto_categorizer_api.models.Prediction"><code class="docutils literal notranslate"><span class="pre">Prediction</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#qto_categorizer_api.models.init_db"><code class="docutils literal notranslate"><span class="pre">init_db()</span></code></a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="#module-qto_categorizer_api.setup_logging">qto_categorizer_api.setup_logging module</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#qto_categorizer_api.setup_logging.setup_logging"><code class="docutils literal notranslate"><span class="pre">setup_logging()</span></code></a></li>
 </ul>
@@ -127,10 +132,14 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="qto_categorizer_api.endpoints.html#module-qto_categorizer_api.endpoints.predict">qto_categorizer_api.endpoints.predict module</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="qto_categorizer_api.endpoints.html#qto_categorizer_api.endpoints.predict.InputData"><code class="docutils literal notranslate"><span class="pre">InputData</span></code></a><ul>
-<li class="toctree-l4"><a class="reference internal" href="qto_categorizer_api.endpoints.html#qto_categorizer_api.endpoints.predict.InputData.feature_1"><code class="docutils literal notranslate"><span class="pre">InputData.feature_1</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="qto_categorizer_api.endpoints.html#qto_categorizer_api.endpoints.predict.InputData.AMOUNT"><code class="docutils literal notranslate"><span class="pre">InputData.AMOUNT</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="qto_categorizer_api.endpoints.html#qto_categorizer_api.endpoints.predict.InputData.TYPE_OF_PAYMENT"><code class="docutils literal notranslate"><span class="pre">InputData.TYPE_OF_PAYMENT</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="qto_categorizer_api.endpoints.html#qto_categorizer_api.endpoints.predict.InputData.MERCHANT_NAME"><code class="docutils literal notranslate"><span class="pre">InputData.MERCHANT_NAME</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="qto_categorizer_api.endpoints.html#qto_categorizer_api.endpoints.predict.InputData.DESCRIPTION"><code class="docutils literal notranslate"><span class="pre">InputData.DESCRIPTION</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="qto_categorizer_api.endpoints.html#qto_categorizer_api.endpoints.predict.InputData.model_config"><code class="docutils literal notranslate"><span class="pre">InputData.model_config</span></code></a></li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="qto_categorizer_api.endpoints.html#qto_categorizer_api.endpoints.predict.log_api_call_in_db"><code class="docutils literal notranslate"><span class="pre">log_api_call_in_db()</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="qto_categorizer_api.endpoints.html#qto_categorizer_api.endpoints.predict.predict"><code class="docutils literal notranslate"><span class="pre">predict()</span></code></a></li>
 </ul>
 </li>
@@ -155,15 +164,20 @@
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="qto_categorizer_api.settings.html#qto_categorizer_api.settings.app_settings.Settings"><code class="docutils literal notranslate"><span class="pre">Settings</span></code></a><ul>
-<li class="toctree-l4"><a class="reference internal" href="qto_categorizer_api.settings.html#qto_categorizer_api.settings.app_settings.Settings.ai_model_external_url"><code class="docutils literal notranslate"><span class="pre">Settings.ai_model_external_url</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="qto_categorizer_api.settings.html#qto_categorizer_api.settings.app_settings.Settings.url_or_model_path"><code class="docutils literal notranslate"><span class="pre">Settings.url_or_model_path</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="qto_categorizer_api.settings.html#qto_categorizer_api.settings.app_settings.Settings.data_loader_module"><code class="docutils literal notranslate"><span class="pre">Settings.data_loader_module</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="qto_categorizer_api.settings.html#qto_categorizer_api.settings.app_settings.Settings.local_dir"><code class="docutils literal notranslate"><span class="pre">Settings.local_dir</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="qto_categorizer_api.settings.html#qto_categorizer_api.settings.app_settings.Settings.local_temp_dir"><code class="docutils literal notranslate"><span class="pre">Settings.local_temp_dir</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="qto_categorizer_api.settings.html#qto_categorizer_api.settings.app_settings.Settings.log_level"><code class="docutils literal notranslate"><span class="pre">Settings.log_level</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="qto_categorizer_api.settings.html#qto_categorizer_api.settings.app_settings.Settings.svr_host"><code class="docutils literal notranslate"><span class="pre">Settings.svr_host</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="qto_categorizer_api.settings.html#qto_categorizer_api.settings.app_settings.Settings.svr_port"><code class="docutils literal notranslate"><span class="pre">Settings.svr_port</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="qto_categorizer_api.settings.html#qto_categorizer_api.settings.app_settings.Settings.kafka_host"><code class="docutils literal notranslate"><span class="pre">Settings.kafka_host</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="qto_categorizer_api.settings.html#qto_categorizer_api.settings.app_settings.Settings.kafka_port"><code class="docutils literal notranslate"><span class="pre">Settings.kafka_port</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="qto_categorizer_api.settings.html#qto_categorizer_api.settings.app_settings.Settings.root_path"><code class="docutils literal notranslate"><span class="pre">Settings.root_path</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="qto_categorizer_api.settings.html#qto_categorizer_api.settings.app_settings.Settings.workers"><code class="docutils literal notranslate"><span class="pre">Settings.workers</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="qto_categorizer_api.settings.html#qto_categorizer_api.settings.app_settings.Settings.database_url"><code class="docutils literal notranslate"><span class="pre">Settings.database_url</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="qto_categorizer_api.settings.html#qto_categorizer_api.settings.app_settings.Settings.kafka_bootstrap_servers"><code class="docutils literal notranslate"><span class="pre">Settings.kafka_bootstrap_servers</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="qto_categorizer_api.settings.html#qto_categorizer_api.settings.app_settings.Settings.kafka_prediction_topic"><code class="docutils literal notranslate"><span class="pre">Settings.kafka_prediction_topic</span></code></a></li>
 <li class="toctree-l4"><a class="reference internal" href="qto_categorizer_api.settings.html#qto_categorizer_api.settings.app_settings.Settings.model_config"><code class="docutils literal notranslate"><span class="pre">Settings.model_config</span></code></a></li>
 </ul>
 </li>
@@ -186,9 +200,11 @@
 </section>
 <section id="module-qto_categorizer_api.app">
 <span id="qto-categorizer-api-app-module"></span><h2>qto_categorizer_api.app module<a class="headerlink" href="#module-qto_categorizer_api.app" title="Link to this heading"></a></h2>
+<p>App</p>
 </section>
 <section id="module-qto_categorizer_api.cli">
 <span id="qto-categorizer-api-cli-module"></span><h2>qto_categorizer_api.cli module<a class="headerlink" href="#module-qto_categorizer_api.cli" title="Link to this heading"></a></h2>
+<p>CLI qt-categorizer-api</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="qto_categorizer_api.cli.start_api">
 <span class="sig-name descname"><span class="pre">start_api</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../_modules/qto_categorizer_api/cli.html#start_api"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qto_categorizer_api.cli.start_api" title="Link to this definition"></a></dt>
@@ -231,7 +247,81 @@
 <dl class="py function">
 <dt class="sig sig-object py" id="qto_categorizer_api.load_model.load_model">
 <span class="sig-name descname"><span class="pre">load_model</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">settings</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="qto_categorizer_api.settings.html#qto_categorizer_api.settings.app_settings.Settings" title="qto_categorizer_api.settings.app_settings.Settings"><span class="pre">Settings</span></a></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qto_categorizer_api/load_model.html#load_model"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qto_categorizer_api.load_model.load_model" title="Link to this definition"></a></dt>
+<dd><p>Load model.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>settings</strong> (<a class="reference internal" href="qto_categorizer_api.settings.html#qto_categorizer_api.settings.app_settings.Settings" title="qto_categorizer_api.settings.app_settings.Settings"><em>Settings</em></a>) – _description_</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>_description_</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>_type_</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><a class="reference internal" href="#qto_categorizer_api.errors.APIModelNotFoundError" title="qto_categorizer_api.errors.APIModelNotFoundError"><strong>APIModelNotFoundError</strong></a> – _description_</p></li>
+<li><p><a class="reference internal" href="#qto_categorizer_api.errors.APIModelNotLoadableError" title="qto_categorizer_api.errors.APIModelNotLoadableError"><strong>APIModelNotLoadableError</strong></a> – _description_</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="module-qto_categorizer_api.models">
+<span id="qto-categorizer-api-models-module"></span><h2>qto_categorizer_api.models module<a class="headerlink" href="#module-qto_categorizer_api.models" title="Link to this heading"></a></h2>
+<dl class="py class">
+<dt class="sig sig-object py" id="qto_categorizer_api.models.Prediction">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Prediction</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qto_categorizer_api/models.html#Prediction"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qto_categorizer_api.models.Prediction" title="Link to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Base</span></code></p>
+<p>Schema db</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qto_categorizer_api.models.Prediction.id">
+<span class="sig-name descname"><span class="pre">id</span></span><a class="headerlink" href="#qto_categorizer_api.models.Prediction.id" title="Link to this definition"></a></dt>
 <dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qto_categorizer_api.models.Prediction.amount">
+<span class="sig-name descname"><span class="pre">amount</span></span><a class="headerlink" href="#qto_categorizer_api.models.Prediction.amount" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qto_categorizer_api.models.Prediction.type_of_payment">
+<span class="sig-name descname"><span class="pre">type_of_payment</span></span><a class="headerlink" href="#qto_categorizer_api.models.Prediction.type_of_payment" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qto_categorizer_api.models.Prediction.merchant_name">
+<span class="sig-name descname"><span class="pre">merchant_name</span></span><a class="headerlink" href="#qto_categorizer_api.models.Prediction.merchant_name" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qto_categorizer_api.models.Prediction.description">
+<span class="sig-name descname"><span class="pre">description</span></span><a class="headerlink" href="#qto_categorizer_api.models.Prediction.description" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qto_categorizer_api.models.Prediction.prediction">
+<span class="sig-name descname"><span class="pre">prediction</span></span><a class="headerlink" href="#qto_categorizer_api.models.Prediction.prediction" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qto_categorizer_api.models.Prediction.model_path">
+<span class="sig-name descname"><span class="pre">model_path</span></span><a class="headerlink" href="#qto_categorizer_api.models.Prediction.model_path" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="qto_categorizer_api.models.Prediction.created_at">
+<span class="sig-name descname"><span class="pre">created_at</span></span><a class="headerlink" href="#qto_categorizer_api.models.Prediction.created_at" title="Link to this definition"></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="qto_categorizer_api.models.init_db">
+<span class="sig-name descname"><span class="pre">init_db</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">database_url</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qto_categorizer_api/models.html#init_db"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qto_categorizer_api.models.init_db" title="Link to this definition"></a></dt>
+<dd><p>Init db for traceability.</p>
+</dd></dl>
 
 </section>
 <section id="module-qto_categorizer_api.setup_logging">
@@ -239,7 +329,8 @@
 <dl class="py function">
 <dt class="sig sig-object py" id="qto_categorizer_api.setup_logging.setup_logging">
 <span class="sig-name descname"><span class="pre">setup_logging</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">log_level</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">'DEBUG'</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">dict</span></span></span><a class="reference internal" href="../_modules/qto_categorizer_api/setup_logging.html#setup_logging"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qto_categorizer_api.setup_logging.setup_logging" title="Link to this definition"></a></dt>
-<dd></dd></dl>
+<dd><p>Setup logger.</p>
+</dd></dl>
 
 </section>
 <section id="module-qto_categorizer_api">
