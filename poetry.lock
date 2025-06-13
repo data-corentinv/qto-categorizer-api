@@ -4232,13 +4232,13 @@ cffi = {version = "*", markers = "implementation_name == \"pypy\""}
 
 [[package]]
 name = "qto-categorizer-ml"
-version = "0.1.0.dev2"
+version = "0.1.0"
 description = "This is the ML pipeline code of categorized ML porject."
 optional = false
 python-versions = ">=3.10,<3.12"
 groups = ["main"]
 files = [
-    {file = "qto_categorizer_ml-0.1.0.dev2-py3-none-any.whl", hash = "sha256:1470c7862799281d423fd12249007cb1a708b47e4414870aa99c153f493406d5"},
+    {file = "qto_categorizer_ml-0.1.0-py3-none-any.whl", hash = "sha256:61c0c761e2ae0d3c9bd4ea91b8c77c1367479aec24a0af3b3f570034462eb5f7"},
 ]
 
 [package.dependencies]
@@ -4268,7 +4268,7 @@ tests = ["boto3-stubs[s3] (>=1.34.61,<2.0.0)", "moto (>=5.0.3,<6.0.0)", "pytest 
 
 [package.source]
 type = "file"
-url = "data/dist/qto_categorizer_ml-0.1.0.dev2-py3-none-any.whl"
+url = "data/dist/qto_categorizer_ml-0.1.0-py3-none-any.whl"
 
 [[package]]
 name = "questionary"
@@ -6192,4 +6192,4 @@ type = ["pytest-mypy"]
 [metadata]
 lock-version = "2.1"
 python-versions = ">=3.10,<3.12"
-content-hash = "2d799e7530e5c8701241a02d36813dbd15718167dc5285e96105a22d8e242981"
+content-hash = "848fe091bacc2750b964f72862319f3fb9a2f8179f442a7de1e534d9aed7b113"
