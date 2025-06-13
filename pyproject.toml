@@ -1,3 +1,7 @@
+# https://python-poetry.org/docs/pyproject/
+
+# PACKAGE
+
 [tool.poetry]
 name = "qto-categorizer-api"
 version = "0.1.0"
@@ -9,7 +13,7 @@ packages = [
     ]
 
 [tool.poetry.dependencies]
-python = "^3.12"
+python = ">=3.10,<3.12"
 cachetools = "^5.3.3"
 fastapi = "^0.111.0"
 pandas = "^2.2.2"
@@ -17,6 +21,7 @@ pydantic-settings = "^2.2.1"
 setuptools = "^70.0.0"
 uvicorn = "^0.29.0"
 types-cachetools = "^6.0.0.20250525"
+qto-categorizer-ml = {path = "data/dist/qto_categorizer_ml-0.1.0.dev1-py3-none-any.whl"}
 
 [tool.poetry.group.dev.dependencies]
 pre-commit = "^3.7.0"
