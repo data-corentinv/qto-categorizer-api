@@ -1,5 +1,5 @@
-""" Root endpoint.
-"""
+"""Root endpoint."""
+
 import fastapi
 
 from qto_categorizer_api.endpoints.router import router

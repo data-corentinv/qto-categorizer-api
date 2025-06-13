@@ -1,5 +1,5 @@
-"""
-"""
+""" """
+
 import logging
 import pathlib
 from cachetools.func import ttl_cache
@@ -8,6 +8,7 @@ from typing import Union
 from qto_categorizer_ml.io.registries import CustomLoader
 from qto_categorizer_api.errors import APIModelNotFoundError, APIModelNotLoadableError
 from qto_categorizer_api.settings.app_settings import Settings
+
 
 @ttl_cache(maxsize=1, ttl=86400)
 def load_model(settings: Settings):
@@ -39,9 +40,7 @@ def load_model(settings: Settings):
 
     url_or_model_path: Union[str, pathlib.Path] = settings.url_or_model_path
 
-    logger.info(
-        "[API::load_model] Machine Learning (ML) model: %s", {url_or_model_path}
-    )
+    logger.info("[API::load_model] Machine Learning (ML) model: %s", {url_or_model_path})
 
     loader = CustomLoader()
     model = loader.load(uri=url_or_model_path)

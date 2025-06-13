@@ -1,5 +1,5 @@
-""" Default settings.
-"""
+"""Default settings."""
+
 import os
 import pathlib
 

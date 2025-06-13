@@ -1,4 +1,5 @@
 """Kafka producer for prediction requests."""
+
 import json
 import logging
 from typing import Dict, Any
@@ -24,8 +25,8 @@ class KafkaPredictionProducer:
 
         # Kafka configuration
         self.producer_config = {
-            'bootstrap.servers': settings.kafka_bootstrap_servers,
-            'client.id': 'prediction-producer'
+            "bootstrap.servers": settings.kafka_bootstrap_servers,
+            "client.id": "prediction-producer",
         }
         self.producer = Producer(self.producer_config)
         self.topic = settings.kafka_prediction_topic
@@ -33,9 +34,9 @@ class KafkaPredictionProducer:
     def delivery_report(self, err, msg):
         """Handle delivery reports."""
         if err is not None:
-            self.logger.error(f'Message delivery failed: {err}')
+            self.logger.error(f"Message delivery failed: {err}")
         else:
-            self.logger.info(f'Message delivered to {msg.topic()} [{msg.partition()}]')
+            self.logger.info(f"Message delivered to {msg.topic()} [{msg.partition()}]")
 
     def send_prediction_request(self, request: InputData) -> None:
         """Send a prediction request to Kafka.
@@ -49,9 +50,7 @@ class KafkaPredictionProducer:
 
             # Produce message
             self.producer.produce(
-                self.topic,
-                json.dumps(request_dict).encode('utf-8'),
-                callback=self.delivery_report
+                self.topic, json.dumps(request_dict).encode("utf-8"), callback=self.delivery_report
             )
 
             # Wait for any outstanding messages to be delivered
@@ -73,11 +72,11 @@ def main():
         AMOUNT=3.36,
         TYPE_OF_PAYMENT="Direct Debit",
         MERCHANT_NAME="Qonto",
-        DESCRIPTION="Transaction Carte One En Devise Étrangère - fx_card"
+        DESCRIPTION="Transaction Carte One En Devise Étrangère - fx_card",
     )
 
     producer.send_prediction_request(request)
 
 
 if __name__ == "__main__":
-    main() 
+    main()

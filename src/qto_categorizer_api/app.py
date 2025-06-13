@@ -1,5 +1,5 @@
-""" App 
-"""
+"""App"""
+
 import fastapi
 
 from qto_categorizer_api import __version__

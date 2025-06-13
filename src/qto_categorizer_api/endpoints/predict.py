@@ -1,5 +1,5 @@
-""" Predict route.
-"""
+"""Predict route."""
+
 from typing import Any
 
 import logging
@@ -12,22 +12,24 @@ from qto_categorizer_api.endpoints.router import router
 from qto_categorizer_api.load_model import load_model
 from qto_categorizer_api.models import init_db, Prediction
 
+
 #
 class InputData(pydantic.BaseModel):
-    """ InputData request format.
-    """
+    """InputData request format."""
+
     AMOUNT: float = 3.36
     TYPE_OF_PAYMENT: str = "Direct Debit"
     MERCHANT_NAME: str = "Qonto"
     DESCRIPTION: str = "Transaction Carte One En Devise Étrangère - fx_card"
 
+
 ENDPOINT_DESCRIPTION = (
     "Expose machine learning system designed to automatically categorize financial transactions."
 )
 
+
 def log_api_call_in_db(input_data: dict, predictions, settings: Settings, logger: Any):
-    """ Log each API call in db for traceability.
-    """
+    """Log each API call in db for traceability."""
     db = init_db(settings.database_url)()
     try:
         db_prediction = Prediction(
@@ -36,7 +38,7 @@ def log_api_call_in_db(input_data: dict, predictions, settings: Settings, logger
             merchant_name=input_data["MERCHANT_NAME"],
             description=input_data["DESCRIPTION"],
             prediction=str(predictions[0]),
-            model_path=str(settings.url_or_model_path)
+            model_path=str(settings.url_or_model_path),
         )
         db.add(db_prediction)
         db.commit()
@@ -46,6 +48,7 @@ def log_api_call_in_db(input_data: dict, predictions, settings: Settings, logger
         db.rollback()
     finally:
         db.close()
+
 
 @router.post("/predict", description=ENDPOINT_DESCRIPTION)
 def predict(request_data: InputData) -> dict:
@@ -83,10 +86,7 @@ def predict(request_data: InputData) -> dict:
 
     # Store prediction in database
     log_api_call_in_db(
-        input_data=input_data,
-        predictions=predictions,
-        settings=settings,
-        logger=logger
+        input_data=input_data, predictions=predictions, settings=settings, logger=logger
     )
 
     logger.info("[API::predict] Prediction made: %s", output)

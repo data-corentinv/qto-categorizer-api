@@ -1,5 +1,5 @@
-""" Arg parser.
-"""
+"""Arg parser."""
+
 import argparse
 import typing
 
@@ -135,6 +135,7 @@ def _add_model_path_or_url(parser: argparse.ArgumentParser) -> argparse.Argument
     )
     return parser
 
+
 def _add_kafka_host(parser: argparse.ArgumentParser) -> argparse.ArgumentParser:
     parser.add_argument(
         "-KH",
@@ -157,6 +158,7 @@ def _add_kafka_port(parser: argparse.ArgumentParser) -> argparse.ArgumentParser:
         default=KAFKA_PORT,
     )
     return parser
+
 
 def _get_arg_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
@@ -182,8 +184,7 @@ def _get_arg_parser() -> argparse.ArgumentParser:
 
 
 def parse_args(args: typing.List[str] | None = None) -> argparse.Namespace:
-    """ Arg parser.
-    """
+    """Arg parser."""
     parser: argparse.ArgumentParser = _get_arg_parser()
     resulting_args: argparse.Namespace = parser.parse_args(args)
     return resulting_args

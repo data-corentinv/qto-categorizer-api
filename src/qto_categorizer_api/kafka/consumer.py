@@ -1,4 +1,5 @@
 """Kafka consumer for prediction requests."""
+
 import json
 import logging
 from typing import Dict, Any
@@ -28,9 +29,9 @@ class KafkaPredictionConsumer:
 
         # Kafka configuration
         self.consumer_config = {
-            'bootstrap.servers': settings.kafka_bootstrap_servers,
-            'group.id': 'prediction-consumer-group',
-            'auto.offset.reset': 'earliest'
+            "bootstrap.servers": settings.kafka_bootstrap_servers,
+            "group.id": "prediction-consumer-group",
+            "auto.offset.reset": "earliest",
         }
         self.consumer = Consumer(self.consumer_config)
         self.topic = settings.kafka_prediction_topic
@@ -63,7 +64,7 @@ class KafkaPredictionConsumer:
                     merchant_name=input_data["MERCHANT_NAME"],
                     description=input_data["DESCRIPTION"],
                     prediction=str(predictions[0]),
-                    model_path=str(self.settings.url_or_model_path)
+                    model_path=str(self.settings.url_or_model_path),
                 )
                 db.add(db_prediction)
                 db.commit()
@@ -73,7 +74,7 @@ class KafkaPredictionConsumer:
                 db.rollback()
             finally:
                 db.close()
-                
+
         except Exception as e:
             self.logger.error(f"Failed to process prediction: {str(e)}")
             raise
@@ -81,31 +82,31 @@ class KafkaPredictionConsumer:
     def start_consuming(self):
         """Start consuming messages from Kafka."""
         self.consumer.subscribe([self.topic])
-        
+
         try:
             while True:
                 msg = self.consumer.poll(1.0)
-                
+
                 if msg is None:
                     continue
-                    
+
                 if msg.error():
                     if msg.error().code() == KafkaError._PARTITION_EOF:
-                        self.logger.info('Reached end of partition')
+                        self.logger.info("Reached end of partition")
                     else:
-                        self.logger.error(f'Error: {msg.error()}')
+                        self.logger.error(f"Error: {msg.error()}")
                 else:
                     try:
                         # Parse message
-                        request_dict = json.loads(msg.value().decode('utf-8'))
+                        request_dict = json.loads(msg.value().decode("utf-8"))
                         request = InputData(**request_dict)
-                        
+
                         # Process prediction
                         self.process_prediction(request)
-                        
+
                     except Exception as e:
                         self.logger.error(f"Failed to process message: {str(e)}")
-                        
+
         except KeyboardInterrupt:
             self.logger.info("Stopping consumer...")
         finally:
@@ -120,4 +121,4 @@ def main():
 
 
 if __name__ == "__main__":
-    main() 
+    main()

@@ -1,5 +1,5 @@
-""" Info page.
-"""
+"""Info page."""
+
 import pathlib
 import fastapi
 from fastapi.responses import PlainTextResponse

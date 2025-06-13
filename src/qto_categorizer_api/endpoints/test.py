@@ -1,11 +1,11 @@
-""" Test route.
-"""
+"""Test route."""
+
 import fastapi
 
 from qto_categorizer_api.endpoints.router import router
 
 DEFAULT_OUTPUT = {
-    "category_example": {"type": "str", "category":"Bank Fees & Charges: Other Bank Charges"},
+    "category_example": {"type": "str", "category": "Bank Fees & Charges: Other Bank Charges"},
 }
 
 

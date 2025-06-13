@@ -1,5 +1,5 @@
-""" CLI qt-categorizer-api
-"""
+"""CLI qt-categorizer-api"""
+
 import logging
 import uvicorn
 

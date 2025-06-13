@@ -1,5 +1,5 @@
-""" Health route.
-"""
+"""Health route."""
+
 import fastapi
 
 from qto_categorizer_api.endpoints.router import router

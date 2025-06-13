@@ -1,5 +1,5 @@
-""" Router script.
-"""
+"""Router script."""
+
 import fastapi
 
 #

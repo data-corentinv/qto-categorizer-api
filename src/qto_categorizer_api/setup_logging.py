@@ -5,8 +5,7 @@ from qto_categorizer_api.settings.defaults import LOG_LEVEL
 
 
 def setup_logging(log_level: str = LOG_LEVEL) -> dict:
-    """ Setup logger.
-    """
+    """Setup logger."""
     log_format = "[\%(asctime)s] {\%(name)s} \%(levelname)s - \%(message)s"
 
     logging.basicConfig(level=log_level, format=log_format)

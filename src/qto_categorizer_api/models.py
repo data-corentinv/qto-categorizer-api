@@ -5,9 +5,10 @@ from sqlalchemy.orm import sessionmaker
 
 Base = declarative_base()
 
+
 class Prediction(Base):
-    """Schema db
-    """
+    """Schema db"""
+
     __tablename__ = "predictions"
 
     id = Column(Integer, primary_key=True, index=True)
@@ -19,9 +20,9 @@ class Prediction(Base):
     model_path = Column(String)
     created_at = Column(DateTime, default=datetime.utcnow)
 
+
 def init_db(database_url: str):
-    """ Init db for traceability.
-    """
+    """Init db for traceability."""
     engine = create_engine(database_url)
     Base.metadata.create_all(bind=engine)
     return sessionmaker(autocommit=False, autoflush=False, bind=engine)
