@@ -1,9 +1,11 @@
+""" Test route.
+"""
 import fastapi
 
 from qto_categorizer_api.endpoints.router import router
 
 DEFAULT_OUTPUT = {
-    "example": {"type": "float64", "example": -0.02596975},
+    "category_example": {"type": "str", "category":"Bank Fees & Charges: Other Bank Charges"},
 }
 
 
@@ -14,17 +16,24 @@ def format_output_json(dict_):
      :param dict_:
      :return:
     """
-    result = {key: value["example"] for key, value in dict_.items()}
+    result = {key: value["category"] for key, value in dict_.items()}
     return result
 
 
-endpoint_description = """
+ENDPPOINT_DESCRIPTION = """
 Returns a default dictionary of values, normally with the same format as
 ordinary predictions.
 """
 
 
-@router.get("/test", description=endpoint_description, status_code=fastapi.status.HTTP_200_OK)
+@router.get("/test", description=ENDPPOINT_DESCRIPTION, status_code=fastapi.status.HTTP_200_OK)
 async def test() -> dict:
+    """Test/example route.
+
+    Returns
+    -------
+    dict
+        Format return
+    """
     output_data = format_output_json(DEFAULT_OUTPUT)
     return output_data

@@ -1,3 +1,5 @@
+""" App 
+"""
 import fastapi
 
 from qto_categorizer_api import __version__
@@ -6,7 +8,10 @@ from qto_categorizer_api.endpoints import root, health, info, test, predict
 #
 app = fastapi.FastAPI(
     title="API",
-    description="Expose machine learning system designed to automatically categorize financial transactions",
+    description="""
+        Expose machine learning system designed to automatically 
+        categorize financial transactions.
+    """,
     version=__version__,
 )
 

@@ -154,6 +154,8 @@ def _get_arg_parser() -> argparse.ArgumentParser:
 
 
 def parse_args(args: typing.List[str] | None = None) -> argparse.Namespace:
+    """ Arg parser.
+    """
     parser: argparse.ArgumentParser = _get_arg_parser()
     resulting_args: argparse.Namespace = parser.parse_args(args)
     return resulting_args

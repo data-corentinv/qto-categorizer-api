@@ -5,12 +5,14 @@ from qto_categorizer_api.settings.defaults import LOG_LEVEL
 
 
 def setup_logging(log_level: str = LOG_LEVEL) -> dict:
+    """ Setup logger.
+    """
     log_format = "[\%(asctime)s] {\%(name)s} \%(levelname)s - \%(message)s"
 
     logging.basicConfig(level=log_level, format=log_format)
 
-    logging.info(f"[API] Starting service with version {__version__}...")
-    logging.info(f"[API] Log level set to {log_level}")
+    logging.info("[API] Starting service with version %s...", __version__)
+    logging.info("[API] Log level set to %s", log_level)
 
     log_config: dict = {
         "version": 1,

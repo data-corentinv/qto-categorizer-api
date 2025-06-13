@@ -1,3 +1,5 @@
+""" Default settings.
+"""
 import os
 import pathlib
 
@@ -8,9 +10,11 @@ MODEL_LOCAL_REL_DIR = "data/models"
 
 LOCAL_DIR = pathlib.Path(os.getcwd())
 LOCAL_TEMP_DIR = pathlib.Path(os.getcwd()) / "tmp"
-MODEL_LOCAL_DIR = LOCAL_DIR / MODEL_LOCAL_REL_DIR
 
+MODEL_LOCAL_DIR = LOCAL_DIR / MODEL_LOCAL_REL_DIR
 AI_MODEL_EXTERNAL_URL = MODEL_LOCAL_DIR / MODEL_FILENAME
+
+MODEL_MLFLOW_URI = ""
 
 LOG_LEVEL = "DEBUG"
 

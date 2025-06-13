@@ -1,3 +1,5 @@
+""" Router script.
+"""
 import fastapi
 
 #
