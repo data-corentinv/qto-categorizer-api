@@ -1,26 +1,27 @@
-**API - Qto Categorizer API**
+# API - Qto Categorizer API
 
 - **Description**: Expose machine learning system designed to automatically categorize financial transactions
 - **Purpose**: This API serves as an interface for a machine learning model that helps categorize financial transactions automatically, making it easier to organize and analyze financial data.
 
 ## Table of Content (ToC)
 
-- [Table of Content (ToC)](#table-of-content-toc)
-- [Quickstart](#quickstart)
-  - [Locally](#locally)
-  - [MLFlow model registry](#mlflow-model-registry)
-- [Endpoints](#endpoints)
-  - [Health](#health)
-  - [Info](#info)
-  - [Predict](#predict)
-  - [Test](#test)
-  - [Documentation](#documentation)
-- [Project Structure](#project-structure)
-- [Bruno collections](#bruno-collections)
-  - [Quick Start](#quick-start)
-  - [Collections Overview](#collections-overview)
-- [Kafka (not tested!)](#kafka-not-tested)
-  - [Start Kafka broker](#start-kafka-broker)
+- [API - Qto Categorizer API](#api---qto-categorizer-api)
+  - [Table of Content (ToC)](#table-of-content-toc)
+  - [Quickstart](#quickstart)
+    - [Locally](#locally)
+    - [MLFlow model registry](#mlflow-model-registry)
+  - [Endpoints](#endpoints)
+    - [Health](#health)
+    - [Info](#info)
+    - [Predict](#predict)
+    - [Test](#test)
+    - [Documentation](#documentation)
+  - [Project Structure](#project-structure)
+  - [Bruno collections](#bruno-collections)
+    - [Quick Start](#quick-start)
+    - [Collections Overview](#collections-overview)
+  - [Kafka (not tested!)](#kafka-not-tested)
+    - [Start Kafka broker](#start-kafka-broker)
 
 ## Quickstart
 ### Locally
