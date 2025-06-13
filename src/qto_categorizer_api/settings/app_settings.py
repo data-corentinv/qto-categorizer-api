@@ -35,6 +35,11 @@ class Settings(HashableBaseSettings):
     svr_port: int = SVR_PORT
     root_path: str = ROOT_PATH
     workers: int = WORKERS
+    database_url: str = "sqlite:///./predictions.db"  # Default SQLite database
+    
+    # Kafka settings
+    kafka_bootstrap_servers: str = "localhost:9092"
+    kafka_prediction_topic: str = "prediction-requests"
 
 
 @functools.lru_cache(maxsize=1, typed=False)
